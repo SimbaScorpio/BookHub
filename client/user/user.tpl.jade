@@ -1,0 +1,72 @@
+div.pusher
+	div.user-info-banner
+		div.userphoto
+			img.ui.small.circular.image(src="/img/head.jpg")
+		div.username
+			h2 Simba
+	div.main.container
+		div.ui.secondary.pointing.menu
+			a.item.active(data-tab='self-created') 创建的小说
+			a.item(data-tab='forked') 编辑的小说
+		div.ui.segment.tab.self-created.active(data-tab='self-created')
+			div.ui.page.grid
+				div.four.wide.column
+					div.book
+						div.book-bottom-shadow
+							img.bookface(src='/img/book1.jpg')
+							div.floating.ui.red.small.circular.label
+						p.bookname 《小寂寞》
+				div.four.wide.column
+					div.book
+						div.book-bottom-shadow
+							img.bookface(src='/img/book2.jpg')
+						p.bookname 《温暖的灵魂的味道》
+				div.four.wide.column
+					div.book
+						div.book-bottom-shadow
+							img.bookface(src='/img/book3.jpg')
+						p.bookname 《大主宰》
+				div.four.wide.column
+					div.book
+						div.book-bottom-shadow
+							img.bookface(src='/img/book4.jpg')
+						p.bookname 《莽荒纪》
+				div.four.wide.column
+					div.ui.green.icon.button
+						i.huge.plus.icon
+						p 开创一部小说
+		div.ui.segment.tab.forked(data-tab='forked')
+			div.ui.page.grid
+				div.four.wide.column
+					div.book
+						div.book-bottom-shadow
+							img.bookface(src='/img/book5.jpg')
+						p.bookname 《我欲封天》
+				div.four.wide.column
+					div.book
+						div.book-bottom-shadow
+							img.bookface(src='/img/book6.jpg')
+						p.bookname 《那片星空那片海》
+				div.four.wide.column
+					div.book
+						div.book-bottom-shadow
+							img.bookface(src='/img/book7.jpg')
+						p.bookname 《林徽因传》
+				div.four.wide.column
+					div.book
+						div.book-bottom-shadow
+							img.bookface(src='/img/book8.jpg')
+						p.bookname 《豪门绝恋》
+		div.ui.segment.chapterSelect
+			div.ui.black.ribbon.label.selected-book 《小寂寞》
+			div.ui.secondary.pointing.menu
+				a.active.item(data-tab='1-20') 1-20
+			div.chapters
+				div.ui.tab.active.arr(data-tab='1-20')
+					each arr
+						div.ui.button.chapter {{id}}
+					div.ui.circular.green.icon.button.chapter
+						i.plus.icon
+				div.ui.tab.arr2(data-tab='1-20')
+					each arr2
+						div.ui.button.chapter {{id}}

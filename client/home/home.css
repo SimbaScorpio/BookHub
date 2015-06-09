@@ -1,0 +1,79 @@
+/*Bookhub字样*/
+p.title {
+	position: absolute;
+	color: white;
+	font-family: 'Gill Sans Ultra Bold';
+	font-size: 100px;
+	left: 50%;
+	width: 570px;
+	margin-left: -285px;
+	top: 150px;
+	text-shadow:#000 5px 5px 5px;
+}
+p.follow {
+	position: absolute;
+	color: lightgreen;
+	font-family: 'Gill Sans Ultra Bold';
+	font-size: 30px;
+	left: 50%;
+	width: 430px;
+	margin-left: -220px;
+	top: 300px;
+	text-shadow:#000 5px 5px 5px;
+}
+
+/*网站当前信息*/
+.homepage-info {
+	position: absolute;
+	width: 800px;
+	height: 300px;
+	left: 50%;
+	margin-left: -400px;
+	top: 450px;
+}
+.circle {
+	position: relative;
+	border-radius: 50%;
+	width: 100px;
+	height: 100px;
+	border: 2px red solid;
+	-webkit-box-shadow: 3px 3px 3px;
+  	-moz-box-shadow: 3px 3px 3px;
+  	box-shadow: 3px 3px 3px;
+}
+.circle > p {
+	text-align: center;
+	color: lightgreen;
+	font-family: 'Gill Sans Ultra Bold';
+	font-size: 20px;
+	text-shadow:#000 5px 5px 5px;
+}
+.circle.contributor > p {
+	margin-left: -30px;
+}
+.circle > .num {
+	color: white;
+	font-family: 'Gill Sans Ultra Bold';
+	font-size: 20px;
+	line-height: 100px;
+	text-align: center;
+}
+.circle:hover {
+	cursor: pointer;
+}
+.circle.book {
+	left: 0;
+	top: 0;
+}
+.circle.update {
+	left: 233px;
+	top: -100px;
+}
+.circle.author {
+	left: 466px;
+	top: -200px;
+}
+.circle.contributor {
+	left: 700px;
+	top: -300px;
+}

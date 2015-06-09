@@ -1,0 +1,81 @@
+/*
+This is part of jsdifflib v1.0. <http://github.com/cemerick/jsdifflib>
+
+Copyright 2007 - 2011 Chas Emerick <cemerick@snowtide.com>. All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are
+permitted provided that the following conditions are met:
+
+   1. Redistributions of source code must retain the above copyright notice, this list of
+      conditions and the following disclaimer.
+
+   2. Redistributions in binary form must reproduce the above copyright notice, this list
+      of conditions and the following disclaimer in the documentation and/or other materials
+      provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY Chas Emerick ``AS IS'' AND ANY EXPRESS OR IMPLIED
+WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL Chas Emerick OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+The views and conclusions contained in the software and documentation are those of the
+authors and should not be interpreted as representing official policies, either expressed
+or implied, of Chas Emerick.
+*/
+table.diff {
+	border-collapse: collapse;
+	white-space: pre-wrap;
+}
+table.diff tbody { 
+	font-family: '微软雅黑', Helvetica, arial, sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol';
+}
+table.diff tbody th {
+	font-family: verdana, arial, 'Bitstream Vera Sans', helvetica, sans-serif;
+	background: white;
+	font-size: 11px;
+	font-weight: normal;
+	color: #886;
+	padding: .5em .5em .1em 1.5em;
+	text-align: right;
+	height: 10px;
+}
+table.diff thead {
+	background: #EFEFEF;
+	font-family: Verdana;
+	height: 10px;
+}
+table.diff thead th.texttitle {
+	text-align: left;
+}
+table.diff tbody td {
+	padding: 0px 1em;
+	padding-top: .2em;
+	width: 50%;
+	word-wrap: break-word;
+}
+table.diff .empty {
+	background-color: #f8fafd;
+}
+table.diff .replace {
+	background-color: #f8eec7
+}
+table.diff .delete {
+	background-color: #ffecec;
+}
+table.diff .skip {
+	background-color: #EFEFEF;
+	border: 1px solid #AAA;
+}
+table.diff .insert {
+	background-color: #dbffdb
+}
+table.diff th.author {
+	text-align: right;
+	border-top: 1px solid #BBC;
+	background: #EFEFEF
+}

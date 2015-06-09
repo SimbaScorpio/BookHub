@@ -1,0 +1,68 @@
+div.pusher
+	div.main.container.bookIntro
+		div.ui.large.red.right.corner.label
+			div.text 新
+		div.book-info
+			img.ui.floated.left.image.bookfront(src='/img/book2.jpg')
+			div.book-text
+				div.book-name
+					h2 温暖灵魂的味道
+				div.book-detail
+					dl
+						dt 作者：
+						dd 张家玮
+						dt 类型：
+						dd 生活感想
+						dt 贡献者：
+						dd 99
+				div.book-intro
+					p 张佳玮用灵犀的文字写出令人垂涎的琳琅美食，让人的整个灵魂都要起舞，整个人生都要亮了。苏美则用跳脱的语言，写出生活的随性，岂能万事如意，但求吃口好的。这么远那么近透过记忆的琥珀，用一块花馍讲述一个与你无关，却处处带你回头的故事，那些让人怀念却回不去的旧时光。小岩井则讲述行走在异国他乡的羁旅人的舌尖乡愁、青春爱情和心灵羁绊。
+				div.book-btn
+					div.ui.teal.button 收藏
+					div.ui.teal.button 评价
+	div.main.container.chapterSelect
+		div.ui.secondary.pointing.menu
+			a.active.item(data-tab='1-20') 1-20
+			a.item(data-tab='21-40') 21-40
+			a.item(data-tab='41-60') 41-60
+			a.item(data-tab='61-80') 61-80
+			a.item(data-tab='81-100') 81-100
+		div.chapters
+			div.ui.tab.active(data-tab='1-20')
+				each arr
+					div.ui.button.chapter {{id}}
+			div.ui.tab(data-tab='21-40')
+			div.ui.tab(data-tab='41-60')
+			div.ui.tab(data-tab='61-80')
+			div.ui.tab(data-tab='81-100')
+	div.main.container.bookComments
+		div.ui.minimal.comments
+			div.comment
+				a.avatar
+					img(src="/img/head.jpg")
+				div.content
+					a.author Elliot Fu
+					div.metadata
+						span.date Yesterday at 12:30AM
+					div.text
+						p 这篇小说前面几章写得很好，但是从第50章开始就没什么特色了。
+					div.actions
+						a.reply Reply
+				div.comments
+					div.comment
+						a.avatar
+							img(src="/img/head.jpg")
+						div.content
+							a.author Simba
+							div.metadata
+								span.date Yesterday at 14:10PM
+							div.text
+								p 希望大家能一起来写，这样文章才能别出心裁!
+							div.actions
+								a.reply Reply
+			form.ui.reply.form
+				div.field
+					textarea
+				div.ui.blue.labeled.submit.icon.button
+					i.icon.edit
+					p Add Reply

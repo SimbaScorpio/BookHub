@@ -1,0 +1,17 @@
+.blank {
+	height: 20px;
+}
+.chapter-info-text,
+.chapter-content-text,
+.contributor-modal,
+.merge-acquirement-list {
+	margin-top: 15px;
+	font-family: "微软雅黑";
+}
+.chapter-info-text h2{
+	text-align: center;
+}
+.chapter-content-text textarea {
+	width: 100%;
+	min-height: 500px;
+}

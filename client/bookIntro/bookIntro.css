@@ -1,0 +1,55 @@
+/*书的介绍部分*/
+.main.container.bookIntro {
+	margin-top: 20px;
+	margin-bottom: 10px;
+	font-family: "微软雅黑";
+	position: relative;
+}
+.bookIntro h2 {
+	font-family: "微软雅黑";
+}
+.book-info .bookfront {
+	width: 140px;
+	height: 185px;
+	border-radius: 3px;
+	margin-left: 25px;
+}
+.book-info .book-detail {
+	margin-top: 15px;
+}
+.book-info .book-detail dl {
+	line-height: 22px;
+	overflow: hidden;
+}
+.book-info .book-detail dl dt {
+	float: left;
+	color: #999;
+}
+.book-info .book-detail dl dd {
+	float: left;
+	width: 130px;
+}
+.book-info .book-text {
+	max-width: 800px;
+	margin-left: 200px;
+}
+.book-info .book-intro {
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+.bookIntro .corner.label .text {
+	padding: .5em 0 0 1em ;
+}
+
+/*章节选取部分*/
+.chapterSelect .chapters .ui.button {
+	width: 100px;
+	margin-bottom: 20px;
+	margin-right: 10px;
+}
+
+/*评论部分*/
+.main.container.bookComments {
+	margin-top: 10px;
+	font-family: "微软雅黑";
+}

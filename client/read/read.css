@@ -1,0 +1,66 @@
+/*右侧功能栏*/
+.fixed.launch.button.fork-btn,
+.fixed.launch.button.favor-btn,
+.fixed.launch.button.download-btn {
+	right: 20px;
+}
+.fixed.launch.button.fork-btn:hover,
+.fixed.launch.button.favor-btn:hover,
+.fixed.launch.button.download-btn:hover {
+	width: 180px;
+}
+.fixed.launch.button.fork-btn {
+	top: 200px;
+}
+.fixed.launch.button.fork-btn .text{
+	right: 108px;
+}
+.fixed.launch.button.favor-btn {
+	top: 250px;
+}
+.fixed.launch.button.favor-btn .text{
+	right: 102px;
+}
+.fixed.launch.button.download-btn {
+	top: 300px;
+}
+.fixed.launch.button.download-btn .text{
+	right: 70px;
+}
+
+/*页顶作者信息*/
+.author-info {
+	min-height: 150px;
+}
+.author-info .authorphoto {
+	height: 120px;
+	width: 120px;
+}
+.author-info .author-text {
+	max-width: 800px;
+	margin-left: 150px; 
+}
+.author-info .self-intro,
+.author-info .chapter-intro > p {
+	color: gray;
+	font-size: 15px;
+}
+.author-info .self-intro {
+	padding: .4em 0 1em 0;
+}
+
+
+/*左侧网格，章节内容*/
+.chapter-content .chapter-toolbar {
+	float: right;
+}
+.chapter-content .chapter-title {
+	text-align: center;
+	margin-bottom: 5px;
+}
+.chapter-content .chapter-text {
+	padding: .3em .4em .3em .4em;
+}
+.chapter-content .chapter-toolbar .tool:hover {
+	cursor: pointer;
+}

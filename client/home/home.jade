@@ -1,0 +1,25 @@
+head
+	meta(charset='UTF-8')
+	title BookHub
+body.pushable
+	+menu_sidebar
+
+template(name='home')
+	div.pusher
+		p.title.animated.bounceInLeft Bookhub
+		p.follow.animated.bounceInRight For joy and creativity.
+		div.homepage-info
+			div.circle.book
+				div.num.book-num 100
+				p Books
+			div.circle.update
+				div.num.update-num 55
+				p Updates
+			div.circle.author
+				div.num.author-num 30
+				p Authors
+			div.circle.contributor
+				div.num.contributor-num 213
+				p Contributors	
+		img.homepage(src='/img/home.jpg')
+		

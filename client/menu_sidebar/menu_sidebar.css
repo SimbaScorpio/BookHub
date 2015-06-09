@@ -1,0 +1,81 @@
+.fixed.launch.button {
+  z-index: 20;
+}
+.fixed.launch.button.menu-btn {
+  top: 63px;
+  left: -1px;
+}
+.fixed.launch.button {
+  position: fixed;
+  width: 55px;
+  height: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  -webkit-transition:
+    0.3s width ease,
+    0.5s transform ease
+  ;
+  -moz-transition:
+    0.3s width ease,
+    0.5s transform ease
+  ;
+  -o-transition:
+    0.3s width ease,
+    0.5s transform ease
+  ;
+  -ms-transition:
+    0.3s width ease,
+    0.5s transform ease
+  ;
+  transition:
+    0.3s width ease,
+    0.5s transform ease
+  ;
+}
+.fixed.launch.button.menu-btn .text {
+  left: 54px;
+}
+.fixed.launch.button .text {
+  position: absolute;
+  white-space: nowrap;
+  top: auto;
+  opacity: 0;
+  -webkit-transition:
+    0.3s opacity 0.3s
+  ;
+  -moz-transition:
+    0.3s opacity 0.3s
+  ;
+  -o-transition:
+    0.3s opacity 0.3s
+  ;
+  -ms-transition:
+    0.3s opacity 0.3s
+  ;
+  transition:
+    0.3s opacity 0.3s
+  ;
+}
+.fixed.launch.button.menu-btn:hover {
+  width: 130px;
+}
+.fixed.launch.button:hover .text {
+  opacity: 1;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.left.menu.sidebar .userphoto:hover {
+  cursor: pointer;
+}
+
+.left.menu.sidebar .username {
+  position: relative;
+  width: 100px;
+  height: 10px;
+  left: 120px;
+  top: -60px;
+  font-size: 20px;
+}

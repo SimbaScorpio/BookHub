@@ -1,0 +1,15 @@
+/* CSS declarations go here */
+.diff-panel{
+	position: relative;
+	margin-top: 20px;
+	margin-bottom: 15px;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	width:1500px;
+}
+.diff-panel-heading{
+	font-family: '微软雅黑';
+	height: 40px;
+	padding: 1em 0 0 0;
+	text-align: center;
+}

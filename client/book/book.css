@@ -1,0 +1,43 @@
+.searchbar {
+	width: 220px;
+	left: 50%;
+	margin-left: -110px;
+}
+.main.container {
+	background-color: white;
+	margin: 0 auto;
+	box-shadow: 0 0 2px 0 rgb(0, 0, 0, .05);
+	border-left: 1px solid #DDDDDD;
+	border-right: 1px solid #DDDDDD;
+	border-bottom: 1px solid #DDDDDD;
+	padding: 2em 2em 6em;
+}
+.container {
+	font-family: "微软雅黑";
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+	width: 1170px;
+}
+.book {
+	width: 140px;
+	text-align: center;
+}
+.book:hover {
+	cursor: pointer;
+}
+.bookface {
+	width: 140px;
+	height: 185px;
+	border-radius: 3px;
+}
+.book-front-board .bookface {
+	-webkit-box-shadow: 4px 4px 4px;
+	-moz-box-shadow: 4px 4px 4px;
+	box-shadow: 4px 4px 4px;
+}
+
+.book-front-board .bookname {
+	padding-top: 12px;
+}
