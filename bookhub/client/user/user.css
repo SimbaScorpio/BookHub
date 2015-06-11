@@ -52,3 +52,10 @@
 	-moz-box-shadow: 0 0 10px #f72;
 	-webkit-box-shadow: 0 0 10px #f72;
 }
+.selected {
+	outline: none;
+	border-color: #f72;
+	box-shadow: 0 0 10px #f72;
+	-moz-box-shadow: 0 0 10px #f72;
+	-webkit-box-shadow: 0 0 10px #f72;
+}

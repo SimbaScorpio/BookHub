@@ -19,12 +19,16 @@ if ( Meteor.isClient ) {
 Router.route( '/', function() {
 	this.render('home');
 });
+
+Router.route( '/user/:username', function() {
+	this.render('user');
+})
+
 Router.map( function() {
 	this.route('home');
 	this.route('book');
 	this.route('read');
 	this.route('bookIntro');
-	this.route('user');
 	this.route('authorEdit');
 	this.route('sign');
 })
