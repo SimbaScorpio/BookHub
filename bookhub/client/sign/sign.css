@@ -1,0 +1,12 @@
+.ui.signin, .ui.signup {
+	width: 400px;
+	margin: 60px auto 0 auto !important;
+}
+
+.ui.signup {
+	text-align: left;
+}
+
+.hidden {
+	display: none !important;
+}

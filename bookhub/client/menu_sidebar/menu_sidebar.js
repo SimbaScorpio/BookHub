@@ -5,6 +5,9 @@ if ( Meteor.isClient ) {
 		},
 		'click a': function() {
 			$('.menu-btn').click();
+		},
+		'click a.signout': function() {
+			Meteor.logout();
 		}
 	});
 }

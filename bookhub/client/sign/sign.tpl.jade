@@ -1,0 +1,52 @@
+div.pusher
+    .ui.center.aligned.segment.compact.signin
+        form.ui.form.segment
+            .ui.error.message
+                .header 登陆失败
+                p 用户名或密码错误
+            .field
+                .ui.left.icon.input
+                    input(type='text' name='username' placeholder='用户名' required)
+                    i.user.icon
+            .field
+                .ui.left.icon.input
+                    input(type='password' name='password' placeholder='密码' required) 
+                    i.lock.icon
+            .field
+                input(type='submit' value='登陆').ui.blue.button.submit
+        .ui.horizontal.divider 没有账号？
+        .ui.teal.labeled.icon.button 注册
+            i.signup.icon
+
+    .ui.segment.compact.center.signup.hidden
+        form.ui.form.segment
+            .ui.error.message
+                .header 注册失败
+                p 该用户名已存在
+            .field
+                label 用户名
+                input(type='text' name='username' required)
+            .field
+                label 密码
+                input(type='password' name='password' required)
+            .field
+                label 笔名
+                input(type='text' name='pseudonym' required)
+            .fields.inline
+                label(for='gender') 性别
+                .field
+                    .ui.radio.checkbox
+                        input(type='radio' name='gender' checked='true' value='male')
+                        label 男
+                .field
+                    .ui.radio.checkbox
+                        input(type='radio' name='gender' value='female')
+                        label 女
+            .field
+                label 个性签名
+                textarea(name='introduction')
+            .field
+                input(type='submit' value='注册').ui.blue.button.submit
+                input(type='button' value='返回').ui.teal.button.back
+
+

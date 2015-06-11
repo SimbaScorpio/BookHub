@@ -33,6 +33,14 @@ div.ui.left.menu.sidebar.vertical.inverted
 	a.item
 		i.help.icon
 		span 帮助
+	if currentUser
+		a.item.signout
+			i.sign.out.icon
+			span 退出
+	else
+		a.item(href='/sign')
+			i.sign.in.icon
+			span 登陆
 div.ui.black.big.launch.right.attached.fixed.button.menu-btn
 	i.content.icon
 	span.text Menu

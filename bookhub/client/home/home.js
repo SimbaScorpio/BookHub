@@ -26,4 +26,5 @@ Router.map( function() {
 	this.route('bookIntro');
 	this.route('user');
 	this.route('authorEdit');
+	this.route('sign');
 })
