@@ -11,17 +11,30 @@ if ( Meteor.isClient ) {
 				$('.arr').addClass('active');
 				$('.arr2').removeClass('active');
 			}
-		});
-		$('.button.chapter').click( function() {
-			Router.go('authorEdit');
+			$('.bookface').removeClass('selected');
+			$(this).addClass('selected');
 		})
-
 	}),
+
 	Template.user.helpers( {
+		user: function() {
+			var username = Router.current().params.username;
+			return Meteor.users.findOne( {
+				username: username
+			});
+		},
 		arr: getArr,
 		arr2: getArr2
+	}),
+
+	Template.user.events( {
+		'click .button.chapter': function() {
+			Router.go('authorEdit');
+		}
 	})
 }
+
+
 function getArr() {
 	var arr = new Array;
 	var i;

@@ -1,7 +1,11 @@
 div.ui.left.menu.sidebar.vertical.inverted
 	div.item
-		img.ui.circular.tiny.image.userphoto(src='/img/head.jpg')
-		a.username(href='/user') Simba
+		if currentUser
+			img.ui.circular.tiny.image.userphoto(src='/img/head.jpg')
+			a.username(href='/user/{{currentUser.username}}') {{currentUser.username}}
+		else
+			img.ui.circular.tiny.image.userphoto(src='/img/square-image.png')
+			a.username(href='/sign') 未登录
 	a.item(href='/home')
 		i.home.icon
 		span 首页
