@@ -10,9 +10,29 @@ if ( Meteor.isClient ) {
 		$('.circle').mouseleave( function() {
 			$(this).removeClass('animated rubberBand');
 		});
-		$('.book').click( function() {
+	}),
+
+	Template.home.helpers( {
+		book: function() {
+			var novels = Novel.find({}).fetch();
+			return novels.length;
+		},
+		update: function() {
+			return 0;
+		},
+		author: function() {
+			var users = Meteor.users.find({}).fetch();
+			return users.length;
+		},
+		contributor: function() {
+			return 0;
+		}
+	}),
+
+	Template.home.events( {
+		'click .book': function() {
 			Router.go('book');
-		});
+		}
 	})
 }
 

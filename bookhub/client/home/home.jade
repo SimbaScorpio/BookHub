@@ -10,16 +10,16 @@ template(name='home')
 		p.follow.animated.bounceInRight For joy and creativity.
 		div.homepage-info
 			div.circle.book
-				div.num.book-num 100
+				div.num.book-num {{book}}
 				p Books
 			div.circle.update
-				div.num.update-num 55
+				div.num.update-num {{update}}
 				p Updates
 			div.circle.author
-				div.num.author-num 30
+				div.num.author-num {{author}}
 				p Authors
 			div.circle.contributor
-				div.num.contributor-num 213
+				div.num.contributor-num {{contributor}}
 				p Contributors	
 		img.homepage(src='/img/home.jpg')
 		
