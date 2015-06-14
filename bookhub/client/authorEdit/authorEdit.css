@@ -1,5 +1,8 @@
-.blank {
+.blank-top{
 	height: 20px;
+}
+.blank-bottom {
+	height: 50px;
 }
 .chapter-info-text,
 .chapter-content-text,
@@ -14,4 +17,7 @@
 .chapter-content-text textarea {
 	width: 100%;
 	min-height: 500px;
+	border-radius: 5px;
+	border: 1px solid rgba(39, 41, 43, 0.15);
+	padding: 15px;
 }
