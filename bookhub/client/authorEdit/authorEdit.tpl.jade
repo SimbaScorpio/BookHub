@@ -25,23 +25,15 @@ div.pusher
 					div.actions
 						div.ui.black.button 取消
 						input.ui.positive.right.button(type='submit' value='确定')
-		div.ui.three.wide.column
-			div.ui.segment
-				div.ui.divided.list.merge-acquirement-list
-					div.item
-						div.ui.header.center.aligned 贡献者
-					div.item
-						img.ui.avatar.image(src='/img/unknown-head.jpg')
-						div.content
-							a.header 贡献者A
-					div.item
-						img.ui.avatar.image(src='/img/unknown-head.jpg')
-						div.content
-							a.header 贡献者B
-					div.item
-						img.ui.avatar.image(src='/img/unknown-head.jpg')
-						div.content
-							a.header 贡献者C
+		div.ui.three.wide.column.vertical.menu.pull-request-list
+			div.item
+				div.ui.center.aligned.header 献策者
+			each puller
+				a.item
+					img.ui.avatar.image(src='/img/unknown-head.jpg')
+					span {{user.profile.pseudonym}}
+					if isMerge
+						i.green.checkmark.icon
 	div.blank-bottom
 
 div.ui.dimmer.modals.page
@@ -52,9 +44,7 @@ div.ui.dimmer.modals.page
 			div.ui.medium.image
 				img(src="/img/unknown-head.jpg")
 			div.description
-				div.ui.header 结局更加吸引
-				p 主角A隐退江湖
-				p 主角B发现线索
+				div.contribute-summary
 		div.actions
 			div.ui.black.button 取消
 			div.ui.positive.right.button 全文
@@ -62,8 +52,9 @@ div.ui.dimmer.modals.page
 		i.close.icon
 		div.header 全文
 		div.content
-			div.center.aligned.header 第一章
-			div bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..bla bla..
+			div.ui.center.aligned.header 第?章
+			div.contribute-content
+			div.i(hidden)
 		div.actions
 			div.ui.black.button 取消
 			div.ui.positive.right.button 采纳

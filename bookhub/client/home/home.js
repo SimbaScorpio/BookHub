@@ -48,11 +48,14 @@ Router.route( '/authorEdit/:book_id/:chapter', function() {
 	this.render('authorEdit');
 })
 
+Router.route( '/bookIntro/:id', function() {
+	this.render('bookIntro');
+})
+
 Router.map( function() {
 	this.route('home');
 	this.route('book');
 	this.route('read');
-	this.route('bookIntro');
 	this.route('sign');
 	this.route('user');
 })
