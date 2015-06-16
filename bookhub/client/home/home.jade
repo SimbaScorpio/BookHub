@@ -13,9 +13,14 @@ template(name='home')
         div.homepage-info
             .ui.two.column.middle.aligned.relaxed.fitted.stackable.grid
                 .center.aligned.column
-                    .huge.green.ui.labeled.icon.button.write
-                        i.write.icon
-                        |       创作
+                    if currentUser
+                        a.huge.green.ui.labeled.icon.button.write(href='/user/{{currentUser._id}}')
+                            i.write.icon
+                            |       创作
+                    else
+                        a.huge.green.ui.labeled.icon.button.write(href='/sign')
+                            i.write.icon
+                            |       创作
 
                 .ui.vertical.divider
                     | Or

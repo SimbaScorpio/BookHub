@@ -30,12 +30,6 @@ if ( Meteor.isClient ) {
 	}),
 
 	Template.home.events( {
-		'click .write': function() {
-			if (! Meteor.userId())
-				Router.go('sign');
-
-			Router.go('user');
-		},
 		'click .browser': function() {
 			Router.go('book');
 		}
@@ -46,7 +40,7 @@ Router.route( '/', function() {
 	this.render('home');
 });
 
-Router.route( '/user/:username', function() {
+Router.route( '/user/:userId', function() {
 	this.render('user');
 })
 
