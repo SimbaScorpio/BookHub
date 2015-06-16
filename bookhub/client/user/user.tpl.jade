@@ -15,7 +15,7 @@ div.pusher
 						div.book
 							div.book-bottom-shadow
 								img.bookface-size.bookface(src='/img/default-bookface.jpg')
-							p.bookname 《{{novelname}}》
+							p.bookname 《{{name}}》
 							p.book_id(hidden) {{_id}}
 				div.four.wide.column
 					div.ui.green.icon.button.bookface-size.create-book-btn
@@ -67,13 +67,13 @@ div.ui.dimmer.modals.page
 				div.fields
 					div.seven.wide.field
 						label 书名
-						input(id='bookname' type='text' name='bookname' required)
+						input(id='name' type='text' name='name' required)
 					div.four.wide.field
 						label 类型
-						input(id='bookclass' type='text' name='bookclass' required)
+						input(id='type' type='text' name='type' required)
 				div.field
 					label 介绍
-					textarea(name='information' required)
+					textarea(name='summary' required)
 		div.actions
 			div.ui.black.button.close 取消
 			input.ui.green.button(type='submit' value='创建')

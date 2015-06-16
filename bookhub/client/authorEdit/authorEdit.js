@@ -13,18 +13,18 @@ if ( Meteor.isClient ) {
 			});
 			if ( isNaN(index) ) {
 				return data = {
-					bookname: book.novelname,
+					name: book.name,
 					index: book.lastchapter + 1,
 					title: '',
-					introduction: '',
+					summary: '',
 					content: ''
 				};
 			} else {
 				return data = {
-					bookname: book.novelname,
+					name: book.name,
 					index: index,
 					title: book.chapter[index-1].title,
-					introduction: book.chapter[index-1].information,
+					summary: book.chapter[index-1].summary,
 					content: book.chapter[index-1].content
 				};
 			}
@@ -39,48 +39,48 @@ if ( Meteor.isClient ) {
 		},
 		'click .confirm-publish-modal .right': function() {
 			var title = $('.title input').val();
-			var intro = $('.intro textarea').val();
+			var summary = $('.summary textarea').val();
 			var content = $('.chapter-content-text textarea').val();
 			var index = Router.current().params.chapter;
 			var book_id = Router.current().params.book_id;
 			if ( isNaN(index) ) {
-				insertNovelChapter(book_id, index, title, intro, content);
+				insertNovelChapter(book_id, index, title, summary, content);
 			} else {
-				updateNovelChapter(book_id, index, title, intro, content);
+				updateNovelChapter(book_id, index, title, summary, content);
 			}
 			$('.success-publish-modal').modal('show');
 		},
 		'click .success-publish-modal .right': function() {
-			Router.go('/user/' + Meteor.user().username);
+			Router.go('/user/' + Meteor.userId());
 		}
 	})
 }
 
-function insertNovelChapter( book_id, index, title, information, content ) {
+function insertNovelChapter( book_id, index, title, summary, content ) {
 	var curdate = new Date();
-	var lastchapter = Novel.findOne( {_id: book_id} ).lastchapter + 1;
+	var lastChapter = Novel.findOne( {_id: book_id} ).lastChapter + 1;
 	var chapter = {
-		index: lastchapter,
+		index: lastChapter,
 		title: title,
-		information: information,
+		summary: summary,
 		content: content,
-		contributor_id: [],
+		contributorIds: [],
 		createAt: curdate,
 		modifyAt: curdate,
 		comment: [],
-		pullrequest: []
+		pullRequest: []
 	};
 	Novel.update( {_id: book_id}, {
-		$inc: {lastchapter: 1},
-		$push: {chapter: chapter}
+		$inc: {lastChapter: 1},
+		$push: {chapters: chapter}
 	});
 }
 
-function updateNovelChapter( book_id, index, title, information, content ) {
+function updateNovelChapter( book_id, index, title, summary, content ) {
 	Novel.update( { _id: book_id }, {
 			$set: ( ref$ = {},
 				ref$['chapter.'+(index-1)+'.title'] = title,
-				ref$['chapter.'+(index-1)+'.information'] = information,
+				ref$['chapter.'+(index-1)+'.summary'] = summary,
 				ref$['chapter.'+(index-1)+'.content'] = content,
 				ref$ ),
 		}

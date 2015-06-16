@@ -10,14 +10,15 @@ if ( Meteor.isClient ) {
 
 	Template.user.helpers( {
 		user: function() {
-			var username = Router.current().params.username;
+			var id = Router.current().params.id;
 			return Meteor.users.findOne( {
-				username: username
+				_id: id
 			});
 		},
 		selfbooks: function() {
+			var id = Router.current().params.id;
 			return Novel.find( {
-				author_id: Meteor.user().username
+				authorId: id
 			}).fetch();
 		},
 		forkbooks: function() {
@@ -41,13 +42,13 @@ if ( Meteor.isClient ) {
 			$('.chapterSelect .menu').after( $('<div class=\'chapters\'></div>') );
 
 
-			if ( !novel || novel.chapter.length <= 0 ) {            // 空章节提示
+			if ( !novel || novel.chapters.length <= 0 ) {            // 空章节提示
 				$('.chapterSelect .msg').html('暂时还没有章节:(');
 			} else {
 				$('.chapterSelect .msg').html('');
 			}
 
-			for ( var i = 1; i <= novel.chapter.length + 1; ++i ) {
+			for ( var i = 1; i <= novel.chapters.length + 1; ++i ) {
 				if ( i % 20 == 1 ) {                       // 一页20章
 					var begin = i;
 					var end = i + 19;
@@ -55,16 +56,16 @@ if ( Meteor.isClient ) {
 					$('.chapterSelect .menu').append(child1);
 
 					var child2 = $('<div class=\'ui tab\' data-tab=\''+begin+'-'+end+'\'</div>');   // 添加章节点
-					for ( var j = i; j <= end && j <= novel.chapter.length; ++j ) {
+					for ( var j = i; j <= end && j <= novel.chapters.length; ++j ) {
 						var child21 = $('<div class=\'ui button chapter\'>' + j + '</div>');
 						child2.append(child21);
 					}
 
-					if ( end > novel.chapter.length ) {                // 末尾添加创建按钮+
+					if ( end > novel.chapters.length ) {                // 末尾添加创建按钮+
 						var child22 = $('<div class=\'ui circular green icon button chapter\'></div>');
 						var child221 = $('<i class=\'plus icon\'></i>');
 						child22.append(child221);
-						child2.append(child22); 
+						child2.append(child22);
 					}
 
 					$('.chapterSelect .chapters').append(child2);
@@ -91,17 +92,18 @@ if ( Meteor.isClient ) {
 			$('.create-book-modal').modal('hide');
 			var curdate = new Date();
 			var novel_id = Novel.insert( {
-				author_id: Meteor.user().username,
-				novelname: e.target.bookname.value,
-				novelclass: e.target.bookclass.value,
-				information: e.target.information.value,
+				authorId: Meteor.userId(),
+				authorPseudonym: Meteor.user().profile.pseudonym,
+				name: e.target.name.value,
+				type: e.target.type.value,
+				summary: e.target.summary.value,
 				follower: [],
 				createAt: curdate,
-				cur_version: curdate,
-				lastchapter: 0,
+				curVersion: curdate,
+				lastChapter: 0,
 				versions: [],
-				chapter: [],
-				bookcomment: []
+				chapters: [],
+				bookComment: []
 			});
 		},
 	})

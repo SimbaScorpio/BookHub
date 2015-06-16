@@ -4,7 +4,7 @@ div.pusher
 		div.ui.thirteen.wide.column
 			form.ui.segment
 				div.chapter-info-text
-					div.ui.black.ribbon.label 《{{chapter.bookname}}》
+					div.ui.black.ribbon.label 《{{chapter.name}}》
 					h2 第{{chapter.index}}章
 				div.chapter-info-text
 					div.ui.dividing.header 章节介绍
@@ -12,9 +12,9 @@ div.pusher
 						div.field.title
 							p 章节标题:
 							input(name='title' placeholder='Title...' value='{{chapter.title}}')
-						div.field.intro
+						div.field.summary
 							p 章节梗概/修改声明
-							textarea(name='introduction' placeholder='Introduction...') {{chapter.introduction}}
+							textarea(name='summary' placeholder='Introduction...') {{chapter.summary}}
 				div.chapter-content-text
 					div.ui.dividing.header 章节文本
 					textarea(name='content' placeholder='开始章节...') {{chapter.content}}
