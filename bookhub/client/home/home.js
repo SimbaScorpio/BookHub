@@ -44,11 +44,14 @@ Router.route( '/user/:username', function() {
 	this.render('user');
 })
 
+Router.route( '/authorEdit/:book_id/:chapter', function() {
+	this.render('authorEdit');
+})
+
 Router.map( function() {
 	this.route('home');
 	this.route('book');
 	this.route('read');
 	this.route('bookIntro');
-	this.route('authorEdit');
 	this.route('sign');
 })
