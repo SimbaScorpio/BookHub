@@ -28,10 +28,9 @@
 .home .homepage-info {
 	position: absolute;
 	width: 800px;
-	height: 300px;
 	left: 50%;
 	margin-left: -400px;
-	top: 450px;
+	top: 400px;
 }
 .home .circle {
 	position: relative;
@@ -78,4 +77,10 @@
 .home .circle.contributor {
 	left: 700px;
 	top: -300px;
+}
+.home .write {
+	margin-left: 100px;
+}
+.home .browser {
+	margin-right: 100px;
 }
