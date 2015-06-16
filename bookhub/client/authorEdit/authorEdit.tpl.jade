@@ -2,25 +2,29 @@ div.pusher
 	div.blank-top(id='top')
 	div.ui.page.grid
 		div.ui.thirteen.wide.column
-			div.ui.segment
+			form.ui.segment
 				div.chapter-info-text
-					div.ui.black.ribbon.label 《小寂寞》
-					h2 第一章
+					div.ui.black.ribbon.label 《{{chapter.bookname}}》
+					h2 第{{chapter.index}}章
 				div.chapter-info-text
 					div.ui.dividing.header 章节介绍
 					div.ui.form
-						div.field
-							div.title
-								p 章节标题:
-								input(placeholder='Title...')
-						div.field
-							div.intro
-								p 章节梗概/修改声明
-								textarea(placeholder='Introduction...')
+						div.field.title
+							p 章节标题:
+							input(name='title' placeholder='Title...' value='{{chapter.title}}')
+						div.field.intro
+							p 章节梗概/修改声明
+							textarea(name='introduction' placeholder='Introduction...') {{chapter.introduction}}
 				div.chapter-content-text
 					div.ui.dividing.header 章节文本
-					textarea(placeholder='开始章节...')
+					textarea(name='content' placeholder='开始章节...') {{chapter.content}}
 					div.ui.bottom.attached.teal.button.submit-btn 提交
+				div.ui.small.modal.confirm-publish-modal
+					div.content
+						h2 是否发布本章节？
+					div.actions
+						div.ui.black.button 取消
+						input.ui.positive.right.button(type='submit' value='确定')
 		div.ui.three.wide.column
 			div.ui.segment
 				div.ui.divided.list.merge-acquirement-list
@@ -63,17 +67,9 @@ div.ui.dimmer.modals.page
 		div.actions
 			div.ui.black.button 取消
 			div.ui.positive.right.button 采纳
-	div.ui.standard.modal.confirm-publish-modal
-		i.close.icon
-		div.content
-			h2 是否发布本章节？
-		div.actions
-			div.ui.black.button 取消
-			div.ui.positive.right.button 确定
 
-div.ui.dimmer.success-publish-dimmer
-	div.content
-		div.center
-			h2.ui.inverted.icon.header
-				i.send.icon
-				h2 章节发布成功!
+	div.ui.small.modal.success-publish-modal
+		div.content
+			h2 章节发布成功！
+		div.actions
+			input.ui.positive.right.button(value='确定')

@@ -21,3 +21,7 @@
 	border: 1px solid rgba(39, 41, 43, 0.15);
 	padding: 15px;
 }
+.confirm-publish-modal .content,
+.success-publish-modal .content {
+	text-align: center;
+}

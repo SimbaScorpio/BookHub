@@ -75,8 +75,13 @@ if ( Meteor.isClient ) {
 			$( $('.chapterSelect .chapters').children('.tab')[0] ).addClass('active');
 			document.getElementById('chapterSelect').scrollIntoView();
 		},
-		'click .button.chapter': function() {
-			Router.go('authorEdit');
+		'click .button.chapter': function(e) {
+			var node1 = $( $('.self-created').find('.selected')[0] );
+			var node2 = $( $(node1.parent().parent()).children('.book_id')[0] );
+			var id = $(node2).html();
+			var num = $(e.currentTarget).html();
+			if ( isNaN(num) ) num = 'i';                  // 添加章节按钮传递i序号
+			Router.go('/authorEdit/' + id + '/' + num);
 		},
 		'click .create-book-btn': function() {
 			$('.create-book-modal').modal('show');
