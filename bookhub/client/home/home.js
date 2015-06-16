@@ -30,7 +30,13 @@ if ( Meteor.isClient ) {
 	}),
 
 	Template.home.events( {
-		'click .book': function() {
+		'click .write': function() {
+			if (! Meteor.userId())
+				Router.go('sign');
+
+			Router.go('user');
+		},
+		'click .browser': function() {
 			Router.go('book');
 		}
 	})
@@ -40,7 +46,7 @@ Router.route( '/', function() {
 	this.render('home');
 });
 
-Router.route( '/user/:id', function() {
+Router.route( '/user/:username', function() {
 	this.render('user');
 })
 
@@ -54,4 +60,5 @@ Router.map( function() {
 	this.route('read');
 	this.route('bookIntro');
 	this.route('sign');
+	this.route('user');
 })

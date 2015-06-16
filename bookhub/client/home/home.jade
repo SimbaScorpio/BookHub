@@ -1,27 +1,26 @@
 head
-	meta(charset='UTF-8')
-	title BookHub
+    meta(charset='UTF-8')
+    title BookHub
 body.pushable
-	+menu_sidebar
+    +menu_sidebar
 
 template(name='home')
-	div.pusher.home
-		div.title.animated.bounceInLeft
-			p Bookhub
-		div.follow.animated.bounceInRight
-			p For joy and creativity.
-		div.homepage-info
-			div.circle.book
-				div.num.book-num {{book}}
-				p Books
-			div.circle.update
-				div.num.update-num {{update}}
-				p Updates
-			div.circle.author
-				div.num.author-num {{author}}
-				p Authors
-			div.circle.contributor
-				div.num.contributor-num {{contributor}}
-				p Contributors	
-		img.homepage(src='/img/home.jpg')
-		
+    div.pusher.home
+        div.title.animated.bounceInLeft
+            p Bookhub
+        div.follow.animated.bounceInRight
+            p 协同写作  共享小说
+        div.homepage-info
+            .ui.two.column.middle.aligned.relaxed.fitted.stackable.grid
+                .center.aligned.column
+                    .huge.green.ui.labeled.icon.button.write
+                        i.write.icon
+                        |       创作
+
+                .ui.vertical.divider
+                    | Or
+                .center.aligned.column
+                    .huge.green.ui.labeled.icon.button.browser
+                        i.browser.icon
+                        |       浏览
+        img.homepage(src='/img/home.jpg')
