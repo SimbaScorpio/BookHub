@@ -9,6 +9,14 @@ div.ui.left.menu.sidebar.vertical.inverted
 	a.item(href='/home')
 		i.home.icon
 		span 首页
+	if currentUser
+		a.item(href='/user/{{currentUser._id}}')
+			i.write.icon
+			span 创作
+	else
+		a.item(href='/sign')
+			i.write.icon
+			span 创作
 	a.item(href='/book')
 		i.book.icon
 		span 小说
