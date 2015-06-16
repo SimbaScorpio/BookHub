@@ -7,72 +7,38 @@ div.pusher
 					i.search.icon
 	div.dashboard
 	div.main.container.book-front-board
-		div.ui.dividing.header 最近更新
-		div.ui.page.grid
-			div.four.wide.column
-				div.book
-					img.bookface-size.bookface(src='/img/book1.jpg')
-					p.bookname 《小寂寞》
-			div.four.wide.column
-				div.book
-					img.bookface-size.bookface(src='/img/book2.jpg')
-					p.bookname 《温暖的灵魂的味道》
-			div.four.wide.column
-				div.book
-					img.bookface-size.bookface(src='/img/book3.jpg')
-					p.bookname 《大主宰》
-			div.four.wide.column
-				div.book
-					img.bookface-size.bookface(src='/img/book4.jpg')
-					p.bookname 《莽荒纪》
-			div.four.wide.column
-				div.book
-					img.bookface-size.bookface(src='/img/book5.jpg')
-					p.bookname 《我欲封天》
-			div.four.wide.column
-				div.book
-					img.bookface-size.bookface(src='/img/book6.jpg')
-					p.bookname 《那片星空那片海》
-			div.four.wide.column
-				div.book
-					img.bookface-size.bookface(src='/img/book7.jpg')
-					p.bookname 《林徽因传》
-			div.four.wide.column
-				div.book
-					img.bookface-size.bookface(src='/img/book8.jpg')
-					p.bookname 《豪门绝恋》
-
 		div.ui.dividing.header 热门小说
+			.left-direction.hot_novel_left
+				i.chevron.left.icon.big.white
+			.right-direction.hot_novel_right
+				i.chevron.right.icon.big.white
 		div.ui.page.grid
-			div.four.wide.column
-				div.book
-					img.bookface-size.bookface(src='/img/book1.jpg')
-					p.bookname 《小寂寞》
-			div.four.wide.column
-				div.book
-					img.bookface-size.bookface(src='/img/book2.jpg')
-					p.bookname 《温暖的灵魂的味道》
-			div.four.wide.column
-				div.book
-					img.bookface-size.bookface(src='/img/book3.jpg')
-					p.bookname 《大主宰》
-			div.four.wide.column
-				div.book
-					img.bookface-size.bookface(src='/img/book4.jpg')
-					p.bookname 《莽荒纪》
-			div.four.wide.column
-				div.book
-					img.bookface-size.bookface(src='/img/book5.jpg')
-					p.bookname 《我欲封天》
-			div.four.wide.column
-				div.book
-					img.bookface-size.bookface(src='/img/book6.jpg')
-					p.bookname 《那片星空那片海》
-			div.four.wide.column
-				div.book
-					img.bookface-size.bookface(src='/img/book7.jpg')
-					p.bookname 《林徽因传》
-			div.four.wide.column
-				div.book
-					img.bookface-size.bookface(src='/img/book8.jpg')
-					p.bookname 《豪门绝恋》
+			each hot_novels
+				div.four.wide.column.temp_hot_novel
+					div.book
+						img.bookface-size.bookface(src='/img/book1.jpg')
+						p.bookname {{name}}
+			each all_hot_novels
+				div.four.wide.column.hot_novel.hidden
+					div.book
+						img.bookface-size.bookface(src='/img/book1.jpg')
+						p.bookname {{name}}
+
+
+		div.ui.dividing.header 最近更新
+			.left-direction.latest_novel_left
+				i.chevron.left.icon.big.white
+			.right-direction.latest_novel_right
+				i.chevron.right.icon.big.white
+		div.ui.page.grid
+			each latest_novels
+				div.four.wide.column.temp_latest_novel
+					div.book
+						img.bookface-size.bookface(src='/img/book2.jpg')
+						p.bookname {{name}}
+			each all_latest_novels
+				div.four.wide.column.latest_novel.hidden
+					div.book
+						img.bookface-size.bookface(src='/img/book2.jpg')
+						p.bookname {{name}}
+
