@@ -40,7 +40,7 @@ Router.route( '/', function() {
 	this.render('home');
 });
 
-Router.route( '/user/:userId', function() {
+Router.route( '/user/:id', function() {
 	this.render('user');
 })
 

@@ -1,7 +1,10 @@
 div.pusher
 	div.user-info-banner
 		div.userphoto
-			img.ui.small.circular.image(src="/img/head.jpg")
+			if userphoto
+				img#userphoto.middle.small.userphoto-size-big.image(src="/userphoto-img/{{userphoto.copies.userphoto.key}}")
+			else
+				img#userphoto.middle.small.userphoto-size-big.image(src="/img/default-userphoto.jpg")
 		div.username
 			h2 {{user.profile.pseudonym}}
 	div.main.container
@@ -14,9 +17,12 @@ div.pusher
 					div.four.wide.column
 						div.book
 							div.book-bottom-shadow
-								img.bookface-size.bookface(src='/img/default-bookface.jpg')
-							p.bookname 《{{name}}》
-							p.book_id(hidden) {{_id}}
+								if metadata.haspic
+									img.bookface-size.bookface(src='/upload-img/{{copies.images.key}}')
+								else
+									img.bookface-size.bookface(src='/img/default-bookface.jpg')
+							p.bookname 《{{metadata.novelname}}》
+							p.book_id(hidden) {{metadata.novelId}}
 				div.four.wide.column
 					div.ui.green.icon.button.bookface-size.create-book-btn
 						i.huge.plus.icon
@@ -62,7 +68,11 @@ div.ui.dimmer.modals.page
 		div.content
 			div.ui.image
 				div.upload-bookface.book-bottom-shadow.book
-					img.bookface-size.bookface(src='/img/default-bookface.jpg')
+					img#edit-bookface.bookface-size.bookface(src='/img/default-bookface.jpg')
+				div.fields
+					div.seven.wide.field.edit-bookface-div.no-display
+						label 封面图
+						input(id='bookface' type='file' name='bookface')
 			div.description
 				div.fields
 					div.seven.wide.field
@@ -77,3 +87,21 @@ div.ui.dimmer.modals.page
 		div.actions
 			div.ui.black.button.close 取消
 			input.ui.green.button(type='submit' value='创建')
+
+div.ui.modals
+	form.ui.small.modal.form.edit-userphoto-modal
+		i.close.icon
+		div.header 修改头像
+		div.content
+			div.ui.image
+				div.upload-userphoto.book-bottom-shadow.book.no-display
+					img#edit-userphoto.bookface-size.bookface(src='/img/default-userphoto.jpg')
+						
+			div.description
+				div.fields
+					div.seven.wide.field
+						label 新头像
+						input(id='newUserphoto' type='file' name='newUserphoto' required)
+		div.actions
+			div.ui.black.button.close 取消
+			input.ui.green.button(type='submit' value='确定')

@@ -1,3 +1,7 @@
+body, .pushable {
+	background-color: rgba(34, 42, 53, 0.8) !important;
+}
+
 /*Bookhub字样*/
 .home .title {
 	text-align: center;

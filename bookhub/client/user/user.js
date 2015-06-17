@@ -5,7 +5,14 @@ if ( Meteor.isClient ) {
 			selector: {
 				close: '.close'
 			}
-		})
+		});
+		//--- edited by LY ---
+        $('.edit-userphoto-modal').modal({
+            selector: {
+                close: '.close'
+            }
+        });
+        //--- edited by LY ---
 	}),
 
 	Template.user.helpers( {
@@ -17,13 +24,22 @@ if ( Meteor.isClient ) {
 		},
 		selfbooks: function() {
 			var id = Router.current().params.id;
-			return Novel.find( {
-				authorId: id
-			}).fetch();
+	        //--- edited by LY ---
+            return FilesFS.find( {
+                "metadata.authorId": id
+            }).fetch();
+            //--- edited by LY ---
 		},
 		forkbooks: function() {
-
+			//
 		},
+		userphoto: function() {
+			var id = Router.current().params.id;
+			return IconsFS.findOne( {
+				"metadata.authorId": id,
+				"metadata.iscur": 1
+			});
+		}
 	}),
 
 	Template.user.events( {
@@ -67,7 +83,88 @@ if ( Meteor.isClient ) {
 				chapters: [],
 				bookComment: []
 			});
+			//--- edited by LY ---
+            var pics = $('#bookface')[0].files;
+            for (var i = 0, ln = pics.length; i < ln; i++) {
+              var pic = pics[i];
+              var newpic = new FS.File(pic);
+              newpic.metadata = {
+                authorId: Meteor.userId(),
+                novelId: novel_id,
+                novelname: e.target.name.value,
+                haspic: 1
+              }
+              FilesFS.insert(newpic);
+            }
+            if (pics.length == 0) {
+              var newpic = new FS.File();
+              newpic.metadata = {
+                authorId: Meteor.userId(),
+                novelId: novel_id,
+                novelname: e.target.name.value,
+                haspic: 0
+              }
+              FilesFS.insert(newpic);
+            }
+
+            // 按提交之后表单都要清空
+            e.target.name.value = ''
+            e.target.type.value = ''
+            e.target.summary.value = ''
+            e.target.bookface.value = ''
+            $('.edit-bookface-div').fadeOut();
+            $('#edit-bookface').attr("src","/img/default-bookface.jpg");
+			//--- edited by LY ---
 		},
+		//--- edited by LY ---
+		'click #userphoto': function() {
+            $('.edit-userphoto-modal').modal('show');
+        },
+        'click #edit-bookface': function() {
+            $('.edit-bookface-div').fadeToggle();
+        },
+        'change #bookface': function(e) {
+            var docObj = document.getElementById("bookface");
+            var imgObjPreview = document.getElementById("edit-bookface");
+            if (docObj.files && docObj.files[0]){            
+                imgObjPreview.src = window.URL.createObjectURL(docObj.files[0]);
+            }
+        },
+        'change #newUserphoto': function(e) {
+            var docObj = document.getElementById("newUserphoto");
+            var imgObjPreview = document.getElementById("edit-userphoto");
+            $('.upload-userphoto').removeClass('no-display');
+            if (docObj.files && docObj.files[0]){            
+                imgObjPreview.src = window.URL.createObjectURL(docObj.files[0]);
+            }
+        },
+		'submit .edit-userphoto-modal.form': function(e) {
+			e.preventDefault();
+			$('.edit-userphoto-modal').modal('hide');
+			var curdate = new Date();
+
+			//--- edited by LY ---
+            var pics = $('#newUserphoto')[0].files;
+            for (var i = 0, ln = pics.length; i < ln; i++) {
+              var pic = pics[i];
+              var newpic = new FS.File(pic);
+
+              Meteor.call('update-userphoto');
+
+              newpic.metadata = {
+                authorId: Meteor.userId(),
+                iscur: 1
+              }
+              IconsFS.insert(newpic);
+            }
+            
+
+            // 按提交之后表单都要清空
+            e.target.newUserphoto.value = ''
+            $('.upload-userphoto').addClass('no-display');
+			//--- edited by LY ---
+		},
+        //--- edited by LY ---
 	})
 }
 
