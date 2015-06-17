@@ -3,7 +3,10 @@ div.pusher
 		div.ui.large.red.right.corner.label
 			div.text 新
 		div.book-info
-			img.ui.floated.left.image.bookfront(src='/img/book2.jpg')
+			if novelCover.haspic
+				img.ui.floated.left.image.bookfront(src='/upload-img/{{novelCover.copies.images.key}}')
+			else
+				img.ui.floated.left.image.bookfront(src='/img/default-bookface.jpg')
 			div.book-text
 				div.book-name
 					h2 {{novel.name}}

@@ -13,16 +13,16 @@ if ( Meteor.isClient ) {
 
 	Template.book.helpers({
 		latest_novels: function() {
-			return Novel.find({}, { sort: {createAt: -1}, limit: 8 });
+			return FilesFS.find({}, { sort: {createAt: -1}, limit: 8 });
 		},
 		hot_novels: function() {
-			return Novel.find({}, { sort: {pv: 1}, limit: 8 });
+			return FilesFS.find({}, { sort: {pv: 1}, limit: 8 });
 		},
 		all_latest_novels: function() {
-			return Novel.find({}, { sort: {createAt: -1} });
+			return FilesFS.find({}, { sort: {createAt: -1} });
 		},
 		all_hot_novels: function() {
-			return Novel.find({}, { sort: {pv: 1} });
+			return FilesFS.find({}, { sort: {pv: 1} });
 		}
 	});
 
@@ -48,7 +48,7 @@ function switchSlider(temp, all_novels, direction) {
 	});
 
 	var novels = [];
-	var index = -1;
+	var index = 0;
 	var found = false;
 
 	all_novels.each(function() {
@@ -69,7 +69,7 @@ function switchSlider(temp, all_novels, direction) {
 		}
 	}
 
-	if (!found) {
+	if (!found && index > 8) {
 		index = (direction == 'right') ? 8 : (novels.length - novels.length % 8);
 	}
 

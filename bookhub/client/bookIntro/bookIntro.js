@@ -3,6 +3,9 @@ if ( Meteor.isClient ) {
 		$('.menu .item').tab();
 	}),
 	Template.bookIntro.helpers( {
+		novelCover: function() {
+			return FilesFS.findOne({ 'metadata.novelId': Router.current().params.id });
+		},
 		novel: function() {
 			var id = Router.current().params.id;
 			return Novel.findOne( {
@@ -60,17 +63,15 @@ function insertNovelComment(reviewerId, content) {
 
 
 function getAmount() {
-	var chapters = new Array;
 	var contributors = new Array;
 	var id = Router.current().params.id;
 	var novel = Novel.findOne( {
 		_id: id
 	});
-    chapters = novel.chapters;
-    var i;
-    var j;
-    for(i = 0; i < novel.chapters.length; i++){
-    	for(j = 0; j < novel.chapters[i].contributorIds.length; j++){
+    // var chapters = novel.chapters;
+    
+    for(var i = 0; i < novel.chapters.length; i++){
+    	for(var j = 0; j < novel.chapters[i].contributorIds.length; j++){
 			if(contributors.indexOf(novel.chapters[i].contributorIds[j]) == -1)
 				contributors.push(novel.chapters[i].contributorIds[j]);
     	}

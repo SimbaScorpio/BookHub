@@ -52,10 +52,15 @@ Router.route( '/bookIntro/:id', function() {
 	this.render('bookIntro');
 })
 
+Router.route( '/read/:id/:chapter', function() {
+	this.render('read');
+})
+
 Router.map( function() {
 	this.route('home');
 	this.route('book');
 	this.route('read');
 	this.route('sign');
 	this.route('user');
+	this.route('bookIntro');
 })

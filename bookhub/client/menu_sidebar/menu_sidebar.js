@@ -18,6 +18,7 @@ if ( Meteor.isClient ) {
 		},
 		'click a.signout': function() {
 			Meteor.logout();
+			Router.go('home');
 		}
 	});
 }

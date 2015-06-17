@@ -81,7 +81,7 @@ if ( Meteor.isClient ) {
 				lastChapter: 0,
 				versions: [],
 				chapters: [],
-				bookComment: []
+				novelComments: []
 			});
 			//--- edited by LY ---
             var pics = $('#bookface')[0].files;
