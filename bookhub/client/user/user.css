@@ -2,7 +2,7 @@
 .user-info-banner {
 	width: 100%;
 	padding: 2em 0 2em 0;
-	background-color: #333;
+	background-color: rgba(34, 42, 53, 1);
 	margin-bottom: 20px;
 }
 .user-info-banner .userphoto .image {

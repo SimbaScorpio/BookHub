@@ -3,7 +3,7 @@
 	text-align: center;
 	position: absolute;
 	color: white;
-	font-family: 'Gill Sans Ultra Bold', Arial;
+	font-family: Verdana, Arial;
 	font-size: 100px;
 	left: 50%;
 	width: 570px;
@@ -15,7 +15,7 @@
 	text-align: center;
 	position: absolute;
 	color: lightgreen;
-	font-family: 'Gill Sans Ultra Bold', Arial;
+	font-family: Verdana, Arial;
 	font-size: 30px;
 	left: 50%;
 	width: 430px;
@@ -45,7 +45,7 @@
 .home .circle > p {
 	text-align: center;
 	color: lightgreen;
-	font-family: 'Gill Sans Ultra Bold';
+	font-family: Verdana;
 	font-size: 20px;
 	text-shadow:#000 5px 5px 5px;
 }
@@ -54,7 +54,7 @@
 }
 .home .circle > .num {
 	color: white;
-	font-family: 'Gill Sans Ultra Bold';
+	font-family: Verdana;
 	font-size: 20px;
 	line-height: 100px;
 	text-align: center;
@@ -83,4 +83,8 @@
 }
 .home .browser {
 	margin-right: 100px;
+}
+
+.home .ui.vertical.divider {
+	color: white;
 }

@@ -1,8 +1,12 @@
-div.pusher
+div.pusher.read-pusher
 	div.ui.raised.segment
 		div.container
 			div.author-info
-				img.ui.floated.left.image.authorphoto(src='/img/head.jpg')
+				if novelCover.haspic
+					img.ui.floated.left.image.authorphoto(src='/upload-img/{{novelCover.copies.images.key}}')
+				else
+					img.ui.floated.left.image.authorphoto(src='/img/default-bookface.jpg')
+
 				div.author-text
 					div.authorname
 						h1 {{author.profile.pseudonym}}

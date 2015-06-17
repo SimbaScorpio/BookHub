@@ -80,3 +80,7 @@
 .left-direction:hover, .right-direction:hover {
 	background-color: rgba(0,0,0,0.8);
 }
+
+.book-pusher .grid .book a {
+	color: rgba(0,0,0,0.6);
+}

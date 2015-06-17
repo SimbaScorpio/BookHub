@@ -1,8 +1,10 @@
 .sign-pusher {
 	background-color: rgba(34, 42, 53, 1) !important;
+	width: 100%;
+	height: 100%;
 }
 
-.ui.signin, .ui.signup {
+.sign-pusher .ui.signin, .ui.signup {
 	width: 400px;
 }
 

@@ -64,3 +64,7 @@
 .chapter-content .chapter-toolbar .tool:hover {
 	cursor: pointer;
 }
+
+.read-pusher .thirteen.wide.column.left-grid .segment {
+	min-height: 400px;
+}

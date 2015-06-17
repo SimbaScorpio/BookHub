@@ -31,7 +31,14 @@ if ( Meteor.isClient ) {
             //--- edited by LY ---
 		},
 		forkbooks: function() {
-			//
+			var forkNovels = Meteor.users.findOne({ _id: Meteor.userId()}).profile.fork;
+			var forkNovel = [];
+			for (var i = 0; i < forkNovels.length; i++) {
+				forkNovel.push(FilesFS.findOne({ 
+					'metadata.novelId': forkNovels[i].novelId
+				}));
+			}
+			return forkNovel;
 		},
 		userphoto: function() {
 			var id = Router.current().params.id;
@@ -51,18 +58,39 @@ if ( Meteor.isClient ) {
 
 			var id = $($(e.currentTarget).children('p')[1]).html();            // 章节选择
 			var novel = Novel.findOne( { _id: id } );
-			addSelectMenu(novel);
+			addSelectMenu(novel, $(e.target).parent().parent());
 		},
-		'click .button.chapter': function(e) {
-			var node1 = $( $('.self-created').find('.selected')[0] );
-			var node2 = $( $(node1.parent().parent()).children('.book_id')[0] );
-			var id = $(node2).html();
-			var num = $(e.currentTarget).html();
-			if ( isNaN(num) ) num = 'i';                  // 添加章节按钮传递i序号
-			Router.go('/authorEdit/' + id + '/' + num);
+		'click .chapterSelect .button.ui': function(e) {
+			console.log(e.target);
+			if ($(e.target).hasClass('self-chapter')) {
+				var node1 = $( $('.self-created').find('.selected')[0] );
+				var node2 = $( $(node1.parent().parent()).children('.book_id')[0] );
+				var id = $(node2).html();
+				var num = $(e.currentTarget).html();
+				if ( isNaN(num) ) num = 'i';                  // 添加章节按钮传递i序号
+				
+				Router.go('/authorEdit/' + id + '/' + num);
+			} else {
+				var node1 = $( $('.forked').find('.selected')[0] );
+				var node2 = $( $(node1.parent().parent()).children('.book_id')[0] );
+				var id = $(node2).html();
+				var num = $(e.currentTarget).html();
+				if ( isNaN(num) ) num = 'i';                  // 添加章节按钮传递i序号
+				var chapterLength = Novel.findOne({ _id: id}).chapters.length;
+				if (num == chapterLength) {
+					Router.go('/contributorEdit/' + id + '/' + num);
+					return;
+				}
+				
+				Router.go('/read/' + id + '/' + num);
+			}
+
 		},
 		'click .create-book-btn': function() {
 			$('.create-book-modal').modal('show');
+		},
+		'click .fork-book-btn': function() {
+			Router.go('/book');
 		},
 		'submit .create-book-modal.form': function(e) {
 			e.preventDefault();
@@ -164,11 +192,16 @@ if ( Meteor.isClient ) {
             $('.upload-userphoto').addClass('no-display');
 			//--- edited by LY ---
 		},
-        //--- edited by LY ---
+		'click .user-pusher .ui.secondary.pointing.menu .item': function(e) {
+			$('.user-pusher .ui.segment.chapterSelect').children().remove();
+			var child1 = $('<div class=\'ui black ribbon label selected-book\'> ? </div>');
+			var child2 = $('<div class=\'ui aligned center header msg\'> 请选择一本书 </div>');
+			$('.user-pusher .ui.segment.chapterSelect').append(child1, child2);
+		}
 	})
 }
 
-function addSelectMenu( novel ) {
+function addSelectMenu( novel, clickBook ) {
 	$('.chapterSelect .menu').remove();                   // 重置menu
 	$('.chapterSelect .chapters').remove();
 	$('.chapterSelect .msg').after( $('<div class=\'ui secondary pointing menu\'></div>') );
@@ -190,15 +223,22 @@ function addSelectMenu( novel ) {
 
 			var child2 = $('<div class=\'ui tab\' data-tab=\''+begin+'-'+end+'\'</div>');   // 添加章节点
 			for ( var j = i; j <= end && j <= novel.chapters.length; ++j ) {
-				var child21 = $('<div class=\'ui button chapter\'>' + j + '</div>');
+				var child21;
+				if (clickBook.hasClass('selfbook')) {
+					child21 = $('<div class=\'ui button self-chapter\'>' + j + '</div>');
+				} else {
+					child21 = $('<div class=\'ui button fork-chapter\'>' + j + '</div>');
+				}
 				child2.append(child21);
 			}
 
-			if ( end > novel.chapters.length ) {                // 末尾添加创建按钮+
-				var child22 = $('<div class=\'ui circular green icon button chapter\'></div>');
-				var child221 = $('<i class=\'plus icon\'></i>');
-				child22.append(child221);
-				child2.append(child22);
+			if (clickBook.hasClass('selfbook')) {
+				if ( end > novel.chapters.length ) {                // 末尾添加创建按钮+
+					var child22 = $('<div class=\'ui circular green icon button self-chapter\'></div>');
+					var child221 = $('<i class=\'plus icon\'></i>');
+					child22.append(child221);
+					child2.append(child22);
+				}
 			}
 
 			$('.chapterSelect .chapters').append(child2);

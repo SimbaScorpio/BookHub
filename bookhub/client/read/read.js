@@ -79,7 +79,10 @@ if ( Meteor.isClient ) {
 				if (pullRequests[item].isMerge) result++;
 			}
 			return result;
-		} 
+		},
+		novelCover: function() {
+			return FilesFS.findOne({ 'metadata.novelId': Router.current().params.id });
+		}
 	}),
 	Template.read.events({
 		'click .form .submit' : function(e) {

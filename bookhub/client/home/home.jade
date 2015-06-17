@@ -16,16 +16,16 @@ template(name='home')
                     if currentUser
                         a.huge.green.ui.labeled.icon.button.write(href='/user/{{currentUser._id}}')
                             i.write.icon
-                            |       创作
+                            |       自创
                     else
                         a.huge.green.ui.labeled.icon.button.write(href='/sign')
                             i.write.icon
-                            |       创作
+                            |       自创
 
                 .ui.vertical.divider
                     | Or
                 .center.aligned.column
                     .huge.green.ui.labeled.icon.button.browser
                         i.browser.icon
-                        |       浏览
+                        |       参与
         img.homepage(src='/img/home.png')
