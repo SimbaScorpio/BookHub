@@ -73,7 +73,7 @@ if ( Meteor.isClient ) {
 				$set: ( ref$ = {},
 					ref$['chapters.'+(index-1)+'.pullRequest.'+i+'.isMerge'] = true,
 					ref$ ),
-				$push: ( ref$ = {},
+				$addToSet: ( ref$ = {},
 					ref$['chapters.'+(index-1)+'.contributorIds'] = contributorId,
 					ref$ ),
 			}

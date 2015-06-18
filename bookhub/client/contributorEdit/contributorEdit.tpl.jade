@@ -1,0 +1,61 @@
+div.pusher.contributorEdit-pusher
+	div.blank-top(id='top')
+	div.ui.page.grid
+		div.ui.one.wide.column
+		div#page.ui.thirteen.wide.column
+			form.ui.raised.segment
+				div.chapter-info-text
+					div.ui.black.ribbon.label 《{{chapter.name}}》
+					h2 第{{chapter.index}}章
+				div.chapter-info-text
+					div.ui.dividing.header 章节介绍
+					div.ui.form
+						div.field.title
+							p 章节标题:
+							input(name='title' placeholder='Title...' value='{{chapter.title}}' disabled)
+						div.field.summary
+							p 章节梗概/修改声明
+							textarea(name='summary' placeholder='Introduction...') {{chapter.summary}}
+				div.chapter-content-text
+					div.ui.dividing.header 章节文本
+					textarea(name='content' placeholder='开始章节...') {{chapter.content}}
+				div.ui.small.modal.confirm-publish-modal
+					div.content
+						h2 是否发布给原作者？
+					div.actions
+						div.ui.black.button 取消
+						input.ui.positive.right.button(type='submit' value='确定')
+			div.ui.right.rail
+				div.ui.sticky.author-btn
+					div.ui.blue.button
+						i.book.icon
+						span 原文
+				div.ui.sticky.save-btn
+					div.ui.teal.button
+						i.save.icon
+						span 保存
+				div.ui.sticky.pull-btn
+					div.ui.green.button
+						i.send.icon
+						span Pull
+
+	div.blank-bottom
+
+div.ui.dimmer.modals.page
+	div.ui.standard.modal.author-detail-modal
+		i.close.icon
+		div.header 《{{chapter.name}}》原文
+		div.content
+			div.ui.center.aligned.header 第{{chapter.index}}章 {{chapter.name}}
+			div.ui.dividing.header 章节介绍
+			div.author-summary {{chapter.summary}}
+			div.ui.dividing.header 章节内容
+			div.author-content {{chapter.content}}
+		div.actions
+			div.ui.black.button 取消
+			div.ui.positive.right.button 确定
+	div.ui.small.modal.success-publish-modal
+		div.content
+			h2 章节发布成功！
+		div.actions
+			input.ui.positive.right.button(value='确定')
