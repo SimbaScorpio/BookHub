@@ -6,9 +6,6 @@ if ( Meteor.isClient ) {
 		$('.bookface').mouseleave( function() {
 			$(this).removeClass('animated bounce');
 		});
-		$('.bookface').click( function() {
-			Router.go('bookIntro');
-		});
 	});
 
 	Template.book.helpers({

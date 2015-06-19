@@ -3,7 +3,7 @@ div.pusher.bookIntro-pusher
 		div.ui.large.red.right.corner.label
 			div.text 新
 		div.book-info
-			if novelCover.haspic
+			if novelCover.metadata.haspic
 				img.ui.floated.left.image.bookfront(src='/upload-img/{{novelCover.copies.images.key}}')
 			else
 				img.ui.floated.left.image.bookfront(src='/img/default-bookface.jpg')
@@ -51,7 +51,7 @@ div.pusher.bookIntro-pusher
 				div.comment
 					a.avatar
 						if userPhoto
-							img(src="/userphoto-img/{{userphoto.copies.userphoto.key}}")
+							img(src="/userphoto-img/{{userPhoto.copies.userphoto.key}}")
 						else
 							img(src="/img/default-userphoto.jpg")
 					div.content

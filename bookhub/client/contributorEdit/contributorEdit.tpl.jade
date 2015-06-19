@@ -5,20 +5,20 @@ div.pusher.contributorEdit-pusher
 		div#page.ui.thirteen.wide.column
 			form.ui.raised.segment
 				div.chapter-info-text
-					div.ui.black.ribbon.label 《{{chapter.name}}》
-					h2 第{{chapter.index}}章
+					div.ui.black.ribbon.label 《{{forkChapter.name}}》
+					h2 第{{forkChapter.index}}章
 				div.chapter-info-text
 					div.ui.dividing.header 章节介绍
 					div.ui.form
 						div.field.title
 							p 章节标题:
-							input(name='title' placeholder='Title...' value='{{chapter.title}}' disabled)
+							input(name='title' placeholder='Title...' value='{{forkChapter.title}}' disabled)
 						div.field.summary
 							p 章节梗概/修改声明
-							textarea(name='summary' placeholder='Introduction...') {{chapter.summary}}
+							textarea(name='summary' placeholder='Introduction...') {{forkChapter.summary}}
 				div.chapter-content-text
 					div.ui.dividing.header 章节文本
-					textarea(name='content' placeholder='开始章节...') {{chapter.content}}
+					textarea(name='content' placeholder='开始章节...') {{forkChapter.content}}
 				div.ui.small.modal.confirm-publish-modal
 					div.content
 						h2 是否发布给原作者？
@@ -44,13 +44,13 @@ div.pusher.contributorEdit-pusher
 div.ui.dimmer.modals.page
 	div.ui.standard.modal.author-detail-modal
 		i.close.icon
-		div.header 《{{chapter.name}}》原文
+		div.header 《{{originalChapter.name}}》原文
 		div.content
-			div.ui.center.aligned.header 第{{chapter.index}}章 {{chapter.name}}
+			div.ui.center.aligned.header 第{{originalChapter.index}}章 {{originalChapter.name}}
 			div.ui.dividing.header 章节介绍
-			div.author-summary {{chapter.summary}}
+			div.author-summary {{originalChapter.summary}}
 			div.ui.dividing.header 章节内容
-			div.author-content {{chapter.content}}
+			div.author-content {{originalChapter.content}}
 		div.actions
 			div.ui.black.button 取消
 			div.ui.positive.right.button 确定

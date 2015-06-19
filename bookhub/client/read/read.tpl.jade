@@ -2,10 +2,10 @@ div.pusher.read-pusher
 	div.ui.raised.segment
 		div.container
 			div.author-info
-				if novelCover.haspic
-					img.ui.floated.left.image.authorphoto(src='/upload-img/{{novelCover.copies.images.key}}')
+				if authorPhoto
+					img.ui.floated.left.image.authorphoto(src="/userphoto-img/{{authorPhoto.copies.userphoto.key}}")
 				else
-					img.ui.floated.left.image.authorphoto(src='/img/default-bookface.jpg')
+					img.ui.floated.left.image.authorphoto(src="/img/default-userphoto.jpg")
 
 				div.author-text
 					div.authorname
@@ -21,7 +21,7 @@ div.pusher.read-pusher
 				div.ui.black.ribbon.label 第{{chapter.index}}章
 				div.chapter-toolbar
 					i.users.large.icon.tool(data-content='Contributors' data-variation='large inverted' data-position='top center')
-					span {{pullRequest}}
+					span {{contributorNumber}}
 					i.heart.large.icon.tool(data-content='Like?' data-variation='large inverted' data-position='top center')
 					span {{chapter.like}}
 					i.bookmark.large.icon.tool(data-content="Mark this page?" data-variation='large inverted' data-position='top center')
@@ -31,21 +31,17 @@ div.pusher.read-pusher
 					div {{chapter.content}}
 		div.three.wide.column.right-grid
 			div.ui.raised.segment
-				p time
+				div.ui.center.aligned.header 贡献者
 			div.ui.raised.segment
 				div.ui.divided.list
-					div.item
-						img.ui.avatar.image(src='/img/unknown-head.jpg')
-						div.content
-							a.header 贡献者A
-					div.item
-						img.ui.avatar.image(src='/img/unknown-head.jpg')
-						div.content
-							a.header 贡献者B
-					div.item
-						img.ui.avatar.image(src='/img/unknown-head.jpg')
-						div.content
-							a.header 贡献者C
+					each contributor
+						div.item
+							if contributorPhoto
+								img.ui.avatar.image(src="/userphoto-img/{{contributorPhoto.copies.userphoto.key}}")
+							else
+								img.ui.avatar.image(src="/img/default-userphoto.jpg")
+							div.content
+								a.header {{user.profile.pseudonym}}
 	
 	div.ui.column.page.grid
 		div.sixteen.wide.column
@@ -54,7 +50,10 @@ div.pusher.read-pusher
 					each reviewer
 						div.comment
 							a.avatar
-								img(src="/img/head.jpg")
+								if reviewerPhoto
+									img(src="/userphoto-img/{{reviewerPhoto.copies.userphoto.key}}")
+								else
+									img.ui.avatar.image(src="/img/default-userphoto.jpg")
 							div.content
 								a.author {{name}}
 								div.metadata
@@ -69,12 +68,12 @@ div.pusher.read-pusher
 						div.ui.blue.labeled.submit.icon.button
 							i.icon.edit
 							p Add Reply
-	div.ui.black.big.launch.left.attached.fixed.button.fork-btn
-		i.edit.icon
-		span.text Fork
-	div.ui.black.big.launch.left.attached.fixed.button.favor-btn
-		i.star.icon
-		span.text Favor
-	div.ui.black.big.launch.left.attached.fixed.button.download-btn
-		i.download.icon
-		span.text Download
+	//- div.ui.black.big.launch.left.attached.fixed.button.fork-btn
+	//- 	i.edit.icon
+	//- 	span.text Fork
+	//- div.ui.black.big.launch.left.attached.fixed.button.favor-btn
+	//- 	i.star.icon
+	//- 	span.text Favor
+	//- div.ui.black.big.launch.left.attached.fixed.button.download-btn
+	//- 	i.download.icon
+	//- 	span.text Download

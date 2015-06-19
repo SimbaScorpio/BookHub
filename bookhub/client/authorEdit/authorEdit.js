@@ -36,48 +36,90 @@ if ( Meteor.isClient ) {
 				var contributor = Meteor.users.findOne( {
 					_id: pullRequest[i].contributorId
 				});
+
+				var pullerPhoto = IconsFS.findOne({
+					"metadata.authorId": contributor._id,
+					"metadata.iscur": 1
+				});
+
 				puller.push({
 					user: contributor,
+					pullerPhoto: pullerPhoto,
 					isMerge: pullRequest[i].isMerge
 				});
-			}
+			}			
+
 			return puller;
 		}
 	}),
 
 	Template.authorEdit.events( {
 
-		'click a': function(e) {
+		'click .pull-request-list a.item': function(e) {
+			e.stopPropagation();
 			$('.contribute-brief-modal').modal('show');
-
-			var i =  $('.vertical.menu a').index(e.currentTarget) - 12;
+			var summary, content;
+			var id = e.target.id;
+			Session.set('contributorIdSelected', id);
 
 			var index = Router.current().params.chapter;
 			var pullRequest = getBook().chapters[index-1].pullRequest;
-					
-			var summary = pullRequest[i].summary;
-			var content = pullRequest[i].content;
+
+			for (var i = 0; i < pullRequest.length; i++) {
+				if (pullRequest[i].contributorId == id) {
+					summary = pullRequest[i].summary;
+					content = pullRequest[i].content;
+					break;
+				}
+			}
+
+			var pullerPhoto = IconsFS.findOne({
+				"metadata.authorId": id,
+				"metadata.iscur": 1
+			});
+			
+			$('.contribute-brief-modal .ui.medium.image').children().remove();
+			if (pullerPhoto) {
+				$('.contribute-brief-modal .ui.medium.image').append('<img src="/userphoto-img/' + pullerPhoto.copies.userphoto.key + '"/>');
+			} else {
+				$('.contribute-brief-modal .ui.medium.image').append('<img src="/img/default-userphoto.jpg"');
+			}
+
 			$('.contribute-summary').html(summary);
 			$('.contribute-content').html(content);
-			$('.contribute-detail-modal .content .i').html(i);
 			$('.contribute-detail-modal .content .header').html('第'+index+'章');
 		},
 
 		'click .contribute-detail-modal .right': function() {
-			var i = $('.contribute-detail-modal .content .i').html();
 			var book_id = Router.current().params.book_id;
 			var index = Router.current().params.chapter;
-			var contributorId = getBook().chapters[index-1].pullRequest[i].contributorId;
+			var contributorId = Session.get('contributorIdSelected');
+			var pullRequest = getBook().chapters[index-1].pullRequest;
+			var pullRequestIndex = 0, summary, content;
+			var date = new Date();
+
+			for (var i = 0; i < pullRequest.length; i++) {
+				if (pullRequest[i].contributorId == contributorId) {
+					pullRequestIndex = i;
+					summary = pullRequest[i].summary;
+					content = pullRequest[i].content;
+					break;
+				}
+			}
 
 			Novel.update( { _id: book_id }, {
 				$set: ( ref$ = {},
-					ref$['chapters.'+(index-1)+'.pullRequest.'+i+'.isMerge'] = true,
+					ref$['chapters.'+(index-1)+'.pullRequest.'+pullRequestIndex+'.isMerge'] = true,
 					ref$ ),
 				$addToSet: ( ref$ = {},
 					ref$['chapters.'+(index-1)+'.contributorIds'] = contributorId,
 					ref$ ),
-			}
-	);
+				$set: ( ref$ = {},
+					ref$['chapters.'+(index-1)+'.summary'] = summary,
+					ref$['chapters.'+(index-1)+'.content'] = content,
+					ref$['chapters.'+(index-1)+'.modifyAt'] = date,
+					ref$ ),
+			});
 		},
 
 		'click .submit-btn': function() {

@@ -59,29 +59,51 @@ if ( Meteor.isClient ) {
 				var user = Meteor.users.findOne( {
 				    _id: comments[item].reviewerId
 			    });
+			    var reviewerPhoto = IconsFS.findOne({
+					"metadata.authorId": comments[item].reviewerId,
+					"metadata.iscur": 1
+				});
+
 				result.push({
 					name : user.username,
 					content : comments[item].content,
-					createAt : comments[item].createAt
+					createAt : comments[item].createAt,
+					reviewerPhoto : reviewerPhoto
 				});
 			}
 			return result;
 		},
-		pullRequest: function() {
-			var id = Router.current().params.id;
-			var novel = Novel.findOne( {
-				_id: id
-			});
+		contributorNumber: function() {
+			var novelId = Router.current().params.id;
 			var chapter = Router.current().params.chapter;
-			var pullRequests = novel.chapters[Number(chapter)-1].pullrequest;
-			var result = 0;
-			for (item in pullRequests) {
-				if (pullRequests[item].isMerge) result++;
+			return Novel.findOne({ _id: novelId }).chapters[Number(chapter)-1].contributorIds.length;
+		},
+		authorPhoto: function() {
+			return IconsFS.findOne({
+				"metadata.authorId": Meteor.userId(),
+				"metadata.iscur": 1
+			});
+		},
+		contributor: function() {
+			var novelId = Router.current().params.id;
+			var chapter = Router.current().params.chapter;
+			var contributors = Novel.findOne({ _id: novelId }).chapters[Number(chapter)-1].contributorIds;
+			var result = [];
+
+			for (var i = 0; i < contributors.length; i++) {
+				var user = Meteor.users.findOne({ _id: contributors[i]});
+				var contributorPhoto = IconsFS.findOne({
+					"metadata.authorId": contributors[i],
+					"metadata.iscur": 1
+				});
+
+				var individual = {
+					contributorPhoto: contributorPhoto,
+					user: user
+				}
+				result.push(individual);
 			}
 			return result;
-		},
-		novelCover: function() {
-			return FilesFS.findOne({ 'metadata.novelId': Router.current().params.id });
 		}
 	}),
 	Template.read.events({
@@ -95,6 +117,17 @@ if ( Meteor.isClient ) {
 			var index = Number(Router.current().params.chapter);
 			var reviwerId = Meteor.userId();
 			insertNovelChapterComment(book_id, index, reviwerId, content);
+		},
+		'click .chapter-content .heart.large.icon.tool': function(e) {
+			var novelId = Router.current().params.id;
+			var chapter = Router.current().params.chapter;
+			Novel.update({
+				_id: novelId
+			}, {
+				$inc: (ref$ = {},
+					ref$['chapters.' + (chapter-1) + '.like'] = 1,
+					ref$)
+			});
 		}
 	})
 }

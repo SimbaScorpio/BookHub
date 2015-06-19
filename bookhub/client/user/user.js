@@ -61,7 +61,6 @@ if ( Meteor.isClient ) {
 			addSelectMenu(novel, $(e.target).parent().parent());
 		},
 		'click .chapterSelect .button.ui': function(e) {
-			console.log(e.target);
 			if ($(e.target).hasClass('self-chapter')) {
 				var node1 = $( $('.self-created').find('.selected')[0] );
 				var node2 = $( $(node1.parent().parent()).children('.book_id')[0] );

@@ -56,7 +56,7 @@ Router.route( '/read/:id/:chapter', function() {
 	this.render('read');
 });
 
-Router.route( '/contributorEdit/:book_id/:index', function() {
+Router.route( '/contributorEdit/:book_id/:chapter', function() {
 	this.render('contributorEdit');
 });
 

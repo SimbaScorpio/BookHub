@@ -76,10 +76,14 @@ if ( Meteor.isClient ) {
 				{ _id: Meteor.userId() },
 				{ $addToSet: 
 					{ 'profile.fork': 
-						{ 'novelId': novelId, createAt: date, content: null }
+						{ novelId: novelId, 
+							createAt: date,
+							chapter: []
+						}
 					}
 				}
 			);
+			Router.go('/user/' + Meteor.userId());
 		}
 	})
 }

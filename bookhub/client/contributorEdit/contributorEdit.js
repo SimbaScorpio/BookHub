@@ -17,18 +17,35 @@ if ( Meteor.isClient ) {
 	}),
 
 	Template.contributorEdit.helpers( {
-		chapter: function() {                             //原文
-			var book = getBook();
+		forkChapter: function() {                             //原文
+			var book_id = Router.current().params.book_id;
 			var index = Router.current().params.chapter;
+			var summary, content;
+			var forkChapter = isModifyForkChapter(book_id, index);
+			var book = getBook();
+
+			if (forkChapter.isModify) {
+				var previousModification = Meteor.users.findOne({
+					_id: Meteor.userId()
+				}).profile.fork[forkChapter.forkIndex].chapter[forkChapter.chapterIndex];
+
+				summary = previousModification.summary;
+				content = previousModification.content;
+			} else {
+				summary = book.chapters[index-1].summary;
+				content = book.chapters[index-1].content;
+			}
+
 			return data = {
 				name: book.name,
 				index: index,
 				title: book.chapters[index-1].title,
-				summary: book.chapters[index-1].summary,
-				content: book.chapters[index-1].content
+				summary: summary,
+				content: content
 			};
+
 		},
-		forkChapter: function() {                         //预填信息：书名，章节号，章节题目，章节介绍，章节内容
+		originalChapter: function() {                         //预填信息：书名，章节号，章节题目，章节介绍，章节内容
 			var book = getBook();
 			var index = Router.current().params.chapter;
 			return data = {
@@ -53,6 +70,7 @@ if ( Meteor.isClient ) {
 			var content = $('.chapter-content-text textarea').val();    //修改内容
 
 			updateForkChapter( book_id, index, summary, content );      //保存编辑内容
+			Router.go('/user/' + Meteor.userId());
 		},
 		'click .pull-btn': function() {
 			$('.confirm-publish-modal').modal('show');
@@ -83,8 +101,65 @@ function getBook() {
 	});
 }
 
+function isModifyForkChapter(book_id, index) {
+	var forkNovels = Meteor.users.findOne({
+		_id: Meteor.userId() 
+	}).profile.fork;
+
+	var forkIndex = 0;
+	var chapterIndex = 0;
+	var isModify = false;
+
+	for (var i = 0; i < forkNovels.length; i++) {
+		if (forkNovels[i].novelId == book_id) {
+			forkIndex = i;
+			for (var j = 0; j < forkNovels[i].chapter.length; j++) {
+				if (forkNovels[i].chapter[j].index == index) {
+					chapterIndex = j;
+					isModify = true;
+					break;
+				}
+			}
+			break;
+		}
+	}
+
+	var forkChapter = {
+		forkIndex: forkIndex,
+		chapterIndex: chapterIndex,
+		isModify: isModify
+	}
+
+	return forkChapter;
+}
+
 function updateForkChapter( book_id, index, summary, content ) {
-	/* put your code here */
+	var forkChapter = isModifyForkChapter(book_id, index);
+
+	if (forkChapter.isModify) {
+		Meteor.users.update({
+			_id: Meteor.userId()
+		}, {
+			$set: ( ref$ = {},
+				ref$['profile.fork.' + forkChapter.forkIndex + '.chapter.' + forkChapter.chapterIndex + '.summary'] = summary,
+				ref$['profile.fork.' + forkChapter.forkIndex + '.chapter.' + forkChapter.chapterIndex + '.content'] = content,
+				ref$
+			)
+		});
+	} else {
+		Meteor.users.update({
+			_id: Meteor.userId()
+		}, {
+			$addToSet: ( ref$ = {},
+				ref$['profile.fork.' + forkChapter.forkIndex + '.chapter'] = {
+					index: index,
+					summary: summary,
+					content: content
+				},
+				ref$
+			)
+		});
+	}
 }
 
 function addPullRequest( book_id, index, summary, content ) {
