@@ -15,6 +15,6 @@ flemay:less-autoprefixer
 natestrauser:animate-css
 iron:router
 copleykj:jquery-autosize
-mpowaga:autoform-summernote
-fortawesome:fontawesome
 accounts-password
+cfs:standard-packages
+cfs:filesystem

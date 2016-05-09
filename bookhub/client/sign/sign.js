@@ -16,7 +16,8 @@ if (Meteor.isClient) {
 				profile: {
 					pseudonym: e.target.pseudonym.value,
 					introduction: e.target.introduction.value,
-					gender: e.target.gender.value
+					gender: e.target.gender.value,
+					fork: []
 				}
 			}
 			Accounts.createUser(options, function(err) {

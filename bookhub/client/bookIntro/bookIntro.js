@@ -3,6 +3,9 @@ if ( Meteor.isClient ) {
 		$('.menu .item').tab();
 	}),
 	Template.bookIntro.helpers( {
+		novelCover: function() {
+			return FilesFS.findOne({ 'metadata.novelId': Router.current().params.id });
+		},
 		novel: function() {
 			var id = Router.current().params.id;
 			return Novel.findOne( {
@@ -26,8 +29,33 @@ if ( Meteor.isClient ) {
 			}
 			return comments;
 		},
-		init: selectmenu,
-		amountContributor: getAmount
+		chapters: chaptersDivider,
+		amountContributor: getAmount,
+		isThefirstChapter: function(order) {
+			return order == '1-20';
+		},
+		isForked: function() {
+			var novelId = Router.current().params.id;
+			var user = Meteor.users.findOne({ _id: Meteor.userId() });
+
+			if (Novel.findOne({ _id: novelId }).authorId == Meteor.userId()) {
+				return true;
+			}
+
+			for (var i = 0; i < user.profile.fork.length; i++) {
+				if (user.profile.fork[i].novelId == novelId) {
+					return true;
+				}
+			}
+			return false;
+		},
+		userPhoto: function() {
+			return IconsFS.findOne( {
+				"metadata.authorId": Meteor.userId(),
+				"metadata.iscur": 1
+			});
+		}
+
 	}),
 	Template.bookIntro.events( {
 		'click .submit.icon.button': function(e) {
@@ -40,6 +68,22 @@ if ( Meteor.isClient ) {
 			var id = Router.current().params.id;
 			var num = $(e.currentTarget).html();
 			Router.go('/read/' + id + '/' + num);
+		},
+		'click .bookIntro-pusher .book-btn .fork': function(e) {
+			var novelId = Router.current().params.id;
+			var date = new Date();
+			Meteor.users.update(
+				{ _id: Meteor.userId() },
+				{ $addToSet: 
+					{ 'profile.fork': 
+						{ novelId: novelId, 
+							createAt: date,
+							chapter: []
+						}
+					}
+				}
+			);
+			Router.go('/user/' + Meteor.userId());
 		}
 	})
 }
@@ -60,17 +104,14 @@ function insertNovelComment(reviewerId, content) {
 
 
 function getAmount() {
-	var chapters = new Array;
 	var contributors = new Array;
 	var id = Router.current().params.id;
 	var novel = Novel.findOne( {
 		_id: id
 	});
-    chapters = novel.chapters;
-    var i;
-    var j;
-    for(i = 0; i < novel.chapters.length; i++){
-    	for(j = 0; j < novel.chapters[i].contributorIds.length; j++){
+
+    for(var i = 0; i < novel.chapters.length; i++){
+    	for(var j = 0; j < novel.chapters[i].contributorIds.length; j++){
 			if(contributors.indexOf(novel.chapters[i].contributorIds[j]) == -1)
 				contributors.push(novel.chapters[i].contributorIds[j]);
     	}
@@ -78,41 +119,25 @@ function getAmount() {
 	return contributors.length;
 }
 
-function selectmenu(){
+function chaptersDivider(){
 	var id = Router.current().params.id;
 	var novel = Novel.findOne( {
 		_id: id
 	});
+	var novelsArray = [];
 
-	$('.chapterSelect .menu').remove();                   // 重置menu
-	$('.chapterSelect .chapters').remove();
-	$('.chapterSelect .msg').after( $('<div class=\'ui secondary pointing menu\'></div>') );
-	$('.chapterSelect .menu').after( $('<div class=\'chapters\'></div>') );
-
-	if ( !novel || novel.chapters.length <= 0 ) {            // 空章节提示
-		$('.chapterSelect .msg').html('暂时还没有章节:(');
-	} else {
-		$('.chapterSelect .msg').html('');
-	}
-
-	for ( var i = 1; i <= novel.chapters.length + 1; ++i ) {
-		if ( i % 20 == 1 ) {                       // 一页20章
-			var begin = i;
-			var end = i + 19;
-			var child1 = $('<a class=\'item\' data-tab=\''+begin+'-'+end+'\'>' + begin + '-' + end + '</a>');   // 添加菜单栏
-			$('.chapterSelect .menu').append(child1);
-
-			var child2 = $('<div class=\'ui tab\' data-tab=\''+begin+'-'+end+'\'</div>');   // 添加章节点
-			for ( var j = i; j <= end && j <= novel.chapters.length; ++j ) {
-				var child21 = $('<div class=\'ui button chapter\'>' + j + '</div>');
-				child2.append(child21);
-			}
-			$('.chapterSelect .chapters').append(child2);
+	for (var i = 0; 20 * i < novel.chapters.length; i++) {
+		var eachArray = [];
+		for (var j = 0; j < 20 && 20 * i + j < novel.chapters.length; j++) {
+			eachArray.push(20 * i + j + 1);
 		}
+		novelsArray.push({
+			button: eachArray, 
+			tab: (i * 20 + 1) + '-' + (i + 1) * 20
+		});
 	}
-	$('.menu .item').tab();           // 初始化tab
-	$( $('.chapterSelect .menu').children('.item')[0] ).addClass('active');
-	$( $('.chapterSelect .chapters').children('.tab')[0] ).addClass('active');
+
+	return novelsArray;
 }
 
 

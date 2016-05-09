@@ -1,9 +1,12 @@
-div.pusher
+div.pusher.bookIntro-pusher
 	div.main.container.bookIntro
 		div.ui.large.red.right.corner.label
 			div.text 新
 		div.book-info
-			img.ui.floated.left.image.bookfront(src='/img/book2.jpg')
+			if novelCover.metadata.haspic
+				img.ui.floated.left.image.bookfront(src='/upload-img/{{novelCover.copies.images.key}}')
+			else
+				img.ui.floated.left.image.bookfront(src='/img/default-bookface.jpg')
 			div.book-text
 				div.book-name
 					h2 {{novel.name}}
@@ -18,17 +21,39 @@ div.pusher
 				div.book-intro
 					p {{novel.summary}}
 				div.book-btn
-					div.ui.teal.button 收藏
-					div.ui.teal.button 评价
+					if isForked
+						div.ui.red.button.unfork.disabled 参与创作
+					else
+						div.ui.teal.button.fork 参与创作
+
 	div.main.container.chapterSelect
-		div.ui.aligned.center.header.msg {{init}}
+		div.ui.secondary.pointing.menu
+			each chapters
+				if (isThefirstChapter tab)
+					a.active.item(data-tab='{{tab}}') {{tab}}
+				else
+					a.item(data-tab='{{tab}}') {{tab}}
+		div.chapters
+			each chapters
+				if (isThefirstChapter tab)
+					div.ui.tab.active(data-tab='{{tab}}')
+						each button
+							div.ui.button.chapter {{this}}
+
+				else
+					div.ui.tab(data-tab='{{tab}}')
+						each button
+							div.ui.button.chapter {{this}}
 
 	div.main.container.bookComments
 		div.ui.minimal.comments
 			each comments
 				div.comment
 					a.avatar
-						img(src="/img/head.jpg")
+						if userPhoto
+							img(src="/userphoto-img/{{userPhoto.copies.userphoto.key}}")
+						else
+							img(src="/img/default-userphoto.jpg")
 					div.content
 						a.author {{reviewer}}
 						div.metadata

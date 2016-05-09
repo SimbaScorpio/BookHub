@@ -1,10 +1,20 @@
-.ui.signin, .ui.signup {
+.sign-pusher {
+	background-color: rgba(34, 42, 53, 1) !important;
+	width: 100%;
+	height: 100%;
+}
+
+.sign-pusher .ui.signin, .ui.signup {
 	width: 400px;
-	margin: 60px auto 0 auto !important;
+}
+
+.ui.signin {
+	margin: 150px auto 0 auto !important;
 }
 
 .ui.signup {
 	text-align: left;
+	margin: 60px auto 0 auto !important;
 }
 
 .hidden {

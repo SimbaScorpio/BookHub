@@ -1,5 +1,6 @@
 head
     meta(charset='UTF-8')
+    link(rel='shortcut icon' href='/img/default-bookface.jpg')
     title BookHub
 body.pushable
     +menu_sidebar
@@ -9,23 +10,23 @@ template(name='home')
         div.title.animated.bounceInLeft
             p Bookhub
         div.follow.animated.bounceInRight
-            p 协同写作  共享小说
+            p 协同写作 • 共享小说
         div.homepage-info
             .ui.two.column.middle.aligned.relaxed.fitted.stackable.grid
                 .center.aligned.column
                     if currentUser
                         a.huge.green.ui.labeled.icon.button.write(href='/user/{{currentUser._id}}')
                             i.write.icon
-                            |       创作
+                            |       自创
                     else
                         a.huge.green.ui.labeled.icon.button.write(href='/sign')
                             i.write.icon
-                            |       创作
+                            |       自创
 
                 .ui.vertical.divider
                     | Or
                 .center.aligned.column
                     .huge.green.ui.labeled.icon.button.browser
                         i.browser.icon
-                        |       浏览
-        img.homepage(src='/img/home.jpg')
+                        |       参与
+        img.homepage(src='/img/home.png')

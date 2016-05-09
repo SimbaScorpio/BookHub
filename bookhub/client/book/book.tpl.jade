@@ -1,4 +1,4 @@
-div.pusher
+div.pusher.book-pusher
 	div.ui.segment
 		div.container
 			div.ui.action.input.searchbar
@@ -16,13 +16,21 @@ div.pusher
 			each hot_novels
 				div.four.wide.column.temp_hot_novel
 					div.book
-						img.bookface-size.bookface(src='/img/book1.jpg')
-						p.bookname {{name}}
+						a(href='/bookIntro/{{metadata.novelId}}')
+							if metadata.haspic
+								img.bookface-size.bookface(src='/upload-img/{{copies.images.key}}')
+							else
+								img.bookface-size.bookface(src='/img/default-bookface.jpg')
+						p.bookname 《{{metadata.novelname}}》
 			each all_hot_novels
 				div.four.wide.column.hot_novel.hidden
 					div.book
-						img.bookface-size.bookface(src='/img/book1.jpg')
-						p.bookname {{name}}
+						a(href='/bookIntro/{{metadata.novelId}}')
+							if metadata.haspic
+								img.bookface-size.bookface(src='/upload-img/{{copies.images.key}}')
+							else
+								img.bookface-size.bookface(src='/img/default-bookface.jpg')
+						p.bookname 《{{metadata.novelname}}》
 
 
 		div.ui.dividing.header 最近更新
@@ -34,11 +42,19 @@ div.pusher
 			each latest_novels
 				div.four.wide.column.temp_latest_novel
 					div.book
-						img.bookface-size.bookface(src='/img/book2.jpg')
-						p.bookname {{name}}
+						a(href='/bookIntro/{{metadata.novelId}}')
+							if metadata.haspic
+								img.bookface-size.bookface(src='/upload-img/{{copies.images.key}}')
+							else
+								img.bookface-size.bookface(src='/img/default-bookface.jpg')
+						p.bookname 《{{metadata.novelname}}》
 			each all_latest_novels
 				div.four.wide.column.latest_novel.hidden
 					div.book
-						img.bookface-size.bookface(src='/img/book2.jpg')
-						p.bookname {{name}}
+						a(href='/bookIntro/{{metadata.novelId}}')
+							if metadata.haspic
+								img.bookface-size.bookface(src='/upload-img/{{copies.images.key}}')
+							else
+								img.bookface-size.bookface(src='/img/default-bookface.jpg')
+						p.bookname 《{{metadata.novelname}}》
 

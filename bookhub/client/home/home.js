@@ -40,17 +40,25 @@ Router.route( '/', function() {
 	this.render('home');
 });
 
-Router.route( '/user/:userId', function() {
+Router.route( '/user/:id', function() {
 	this.render('user');
-})
+});
 
 Router.route( '/authorEdit/:book_id/:chapter', function() {
 	this.render('authorEdit');
-})
+});
 
 Router.route( '/bookIntro/:id', function() {
 	this.render('bookIntro');
-})
+});
+
+Router.route( '/read/:id/:chapter', function() {
+	this.render('read');
+});
+
+Router.route( '/contributorEdit/:book_id/:chapter', function() {
+	this.render('contributorEdit');
+});
 
 Router.map( function() {
 	this.route('home');
@@ -58,4 +66,6 @@ Router.map( function() {
 	this.route('read');
 	this.route('sign');
 	this.route('user');
-})
+	this.route('bookIntro');
+	this.route('contributorEdit');
+});

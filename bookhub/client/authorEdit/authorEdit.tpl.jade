@@ -29,8 +29,11 @@ div.pusher
 			div.item
 				div.ui.center.aligned.header 献策者
 			each puller
-				a.item
-					img.ui.avatar.image(src='/img/unknown-head.jpg')
+				a.item(id='{{user._id}}')
+					if pullerPhoto
+						img.ui.avatar.image(src="/userphoto-img/{{pullerPhoto.copies.userphoto.key}}")
+					else
+						img.ui.avatar.image(src="/img/default-userphoto.jpg")
 					span {{user.profile.pseudonym}}
 					if isMerge
 						i.green.checkmark.icon
@@ -42,7 +45,6 @@ div.ui.dimmer.modals.page
 		div.header 修改声明
 		div.content
 			div.ui.medium.image
-				img(src="/img/unknown-head.jpg")
 			div.description
 				div.contribute-summary
 		div.actions
@@ -54,7 +56,6 @@ div.ui.dimmer.modals.page
 		div.content
 			div.ui.center.aligned.header 第?章
 			div.contribute-content
-			div.i(hidden)
 		div.actions
 			div.ui.black.button 取消
 			div.ui.positive.right.button 采纳
